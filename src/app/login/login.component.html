@@ -1,25 +1,22 @@
-<div class="container my-2">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card">
-                <h2 class="card-title text-center p-4">Sign in to your PocketGuard account.</h2>
-                <div class="card-body py-md-4">
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <div class="text-center my-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+<div class="container py-md-4">
+    <div class="col-lg-4 offset-lg-4 py-md-4">
+        <h2 class="text-center pb-3">Sign in to your PocketGuard account.</h2>
+        <div class="">
+            <img src="../../assets/images/bear-profile.png" alt="" height="150px">
+            <form id="loginForm">
+                <div class="form-group my-2">
+                    <input type="email" class="form-control" id="email" placeholder="Email">
                 </div>
-                <div class="text-center">
-                    <p>Don't have an account yet? <a routerLink="/register">Sign-up</a></p>
+                <div class="form-group my-2">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
-            </div>
+                <div class="text-center my-4">
+                    <button type="submit" class="btn btn-primary">Sign-in</button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <p>Don't have an account yet? <a routerLink="/register">Sign-up</a></p>
         </div>
     </div>
 </div>

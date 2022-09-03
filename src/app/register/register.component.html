@@ -1,34 +1,30 @@
-<div class="container my-2">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card">
-                <h2 class="card-title text-center p-4">Let's start with creating your secure account.</h2>
-                <div class="card-body py-md-4">
-                    <form id="registerForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
-                        </div>
-                        <div class="text-center my-4">
-                            <button type="submit" class="btn btn-primary">Register</button>
-                        </div>
-                    </form>
+<div class="container py-md-4">
+    <div class="col-lg-4 offset-lg-4 py-md-4">
+        <h2 class="text-center pb-4">Let's start with creating your secure account.</h2>
+        <div class="">
+            <form id="registerForm">
+                <div class="form-group my-2">
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
                 </div>
-                <div class="text-center">
-                    <p>Already have an account? <a routerLink="/login">Sign-in</a></p>
+                <div class="form-group my-2">
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
                 </div>
-            </div>
+                <div class="form-group my-2">
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group my-2">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group my-2">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                </div>
+                <div class="text-center my-4">
+                    <button type="submit" class="btn btn-primary">Sign-up</button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <p>Already have an account? <a routerLink="/login">Sign-in</a></p>
         </div>
     </div>
 </div>
