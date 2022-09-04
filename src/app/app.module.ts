@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+// import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    // authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
