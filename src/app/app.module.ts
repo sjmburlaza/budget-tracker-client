@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { RecordsComponent } from './records/records.component';
+import { ChartsComponent } from './charts/charts.component';
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 
@@ -19,7 +22,10 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     UserProfileComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CategoriesComponent,
+    RecordsComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
