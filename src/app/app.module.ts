@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +15,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { RecordsComponent } from './records/records.component';
 import { ChartsComponent } from './charts/charts.component';
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { ChartsComponent } from './charts/charts.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    TableModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
