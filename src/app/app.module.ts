@@ -17,6 +17,10 @@ import { ChartsComponent } from './charts/charts.component';
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import {TableModule} from 'primeng/table';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { ButtonModule } from 'primeng/button';
+import { AddCategoryComponent } from './categories/add-category/add-category.component';
+import { UserService } from './_services/user.service';
 
 
 @NgModule({
@@ -28,19 +32,23 @@ import {TableModule} from 'primeng/table';
     LoginComponent,
     CategoriesComponent,
     RecordsComponent,
-    ChartsComponent
+    ChartsComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     TableModule,
+    ButtonModule,
+    DynamicDialogModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
   ],
   providers: [
     // authInterceptorProviders
+    UserService
   ],
   bootstrap: [AppComponent]
 })
