@@ -13,6 +13,7 @@ export class AddCategoryComponent implements OnInit {
     name: null,
     type: null
   };
+  isSuccessful = false;
 
   constructor(public ref: DynamicDialogRef, private userService: UserService,) { }
 
@@ -21,19 +22,23 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  addCategory(name: string, type: string): void {
+  onSubmit(): void {
+    let { name, type } = this.form;
     name = name.trim();
 
     if (!name){
       return;
     }
-    this.userService.addCategory({name, type} as Category).subscribe( category => {
-      this.categories.push(category);
+    this.userService.addCategory({name, type} as Category).subscribe( data => {
+      console.log(data);
+      this.isSuccessful = true;
     });
+    this.ref.close();
+    window.location.reload();
   }
 
   close() {
     this.ref.close();
-}
+  }
 
 }

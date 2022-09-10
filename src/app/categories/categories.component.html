@@ -7,6 +7,7 @@
                 <!-- <th>ObjID</th> -->
                 <th>Name</th>
                 <th>Type</th>
+                <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-category>
@@ -14,6 +15,7 @@
                 <!-- <td>{{category.objID}}</td> -->
                 <td>{{category.name}}</td>
                 <td>{{category.type}}</td>
+                <td><button class="btn btn-sm button-delete">X</button></td>
             </tr>
         </ng-template>
     </p-table>
