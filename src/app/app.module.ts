@@ -22,6 +22,9 @@ import { ButtonModule } from 'primeng/button';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { UserService } from './_services/user.service';
 import { AddRecordComponent } from './records/add-record/add-record.component';
+import { BalanceTrendComponent } from './charts/balance-trend/balance-trend.component';
+import { CategoryBreakdownComponent } from './charts/category-breakdown/category-breakdown.component';
+import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-expense.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { AddRecordComponent } from './records/add-record/add-record.component';
     RecordsComponent,
     ChartsComponent,
     AddCategoryComponent,
-    AddRecordComponent
+    AddRecordComponent,
+    BalanceTrendComponent,
+    CategoryBreakdownComponent,
+    IncomeVsExpenseComponent
   ],
   imports: [
     BrowserModule,
