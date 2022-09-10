@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   getCategories(): void {
     this.userService.getDetails().subscribe(data => {
       const categories = data.categories;
-      this.categories.push(...categories)
+      this.categories.push(...categories);
     });
   }
 

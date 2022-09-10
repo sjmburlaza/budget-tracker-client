@@ -15,7 +15,8 @@ export interface Record {
   type: string,
   description: string,
   amount: number,
-  balance: number
+  balance: number,
+  createdOn?: Date | string
 }
 
 @Injectable({

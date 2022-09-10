@@ -4,17 +4,15 @@
     <p-table [value]="categories" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
-                <!-- <th>ObjID</th> -->
-                <th>Name</th>
                 <th>Type</th>
+                <th>Name</th>
                 <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-category>
             <tr>
-                <!-- <td>{{category.objID}}</td> -->
-                <td>{{category.name}}</td>
                 <td>{{category.type}}</td>
+                <td>{{category.name}}</td>
                 <td><button class="btn btn-sm button-delete">X</button></td>
             </tr>
         </ng-template>
