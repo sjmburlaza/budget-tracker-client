@@ -1,4 +1,7 @@
-# BtClient
+# Budget Tracker App (client-side)
+
+This project is a remake of a previous React project that I did for the bootcamp that I attended in 2021.
+I like the overall idea of the project that's why I decided to convert it into Angular and add some functionalities that I wasn't able to do before.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
 
