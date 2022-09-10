@@ -32,11 +32,21 @@ export class CategoriesComponent implements OnInit {
 
   show() {
     const ref = this.dialogService.open(AddCategoryComponent, {
-        width: window.innerWidth > 400 ? "30%" : "90%",
+        width: this.getDialogWidth(),
         contentStyle: {"min-width": "300px"},
         baseZIndex: 10000,
         closable: false
     });
+  }
+
+  getDialogWidth(): string {
+    if (window.innerWidth < 400) {
+      return "90%"
+    } else if (window.innerWidth > 400 && window.innerWidth < 700) {
+      return "60%"
+    }
+
+    return "30%"
   }
 
 }

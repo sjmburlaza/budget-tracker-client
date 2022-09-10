@@ -21,6 +21,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { UserService } from './_services/user.service';
+import { AddRecordComponent } from './records/add-record/add-record.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UserService } from './_services/user.service';
     CategoriesComponent,
     RecordsComponent,
     ChartsComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AddRecordComponent
   ],
   imports: [
     BrowserModule,
