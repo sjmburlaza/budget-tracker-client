@@ -11,8 +11,6 @@ import { Record, UserService } from 'src/app/_services/user.service';
 export class BalanceTrendComponent implements OnInit {
 
   records: Record[] = [];
-  selectedDateStart: Date = new Date();
-  selectedDateEnd: Date = new Date();
   rangeDates: Date[] = [];
   trendDates: string[] = [];
   trendBalance: number[] = [];
@@ -32,12 +30,11 @@ export class BalanceTrendComponent implements OnInit {
   }
 
   onSelect(): void {
-    console.log(this.rangeDates);
     if (this.rangeDates[1]) {
       this.onDateSelect(this.rangeDates[0], this.rangeDates[1]);
       const canvas = <HTMLCanvasElement> document.getElementById('lineChart');
+
       if (canvas) {
-        console.log('render me')
         this.chart = new Chart(canvas, {
           type: 'line',
           data: {
@@ -102,10 +99,8 @@ export class BalanceTrendComponent implements OnInit {
         }
       }
     })
-    console.log('hello')
     this.trendDates = dateList;
     this.trendBalance = balanceList;
-    
   }
 
 }
