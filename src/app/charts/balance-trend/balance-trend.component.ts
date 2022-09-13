@@ -35,6 +35,9 @@ export class BalanceTrendComponent implements OnInit {
       const canvas = <HTMLCanvasElement> document.getElementById('lineChart');
 
       if (canvas) {
+        if (this.chart) {
+          this.chart.destroy();
+        }
         this.chart = new Chart(canvas, {
           type: 'line',
           data: {
