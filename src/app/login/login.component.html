@@ -2,7 +2,9 @@
     <div class="col-lg-4 offset-lg-4 py-md-2">
         <h2 class="text-center pb-3">Sign in to your PocketGuard account.</h2>
         <div class="">
-            <img src="../../assets/images/bear-profile.png" alt="" height="150px">
+            <div class="text-center">
+                <img src="../../assets/images/bear-profile.png" alt="" height="150px">
+            </div>
             <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="form-group my-2">
                     <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="form.email" required #email="ngModel">
