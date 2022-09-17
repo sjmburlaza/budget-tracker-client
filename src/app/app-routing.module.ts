@@ -18,6 +18,7 @@ const routes: Routes = [
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'categories', component: CategoriesComponent },
     { path: 'records', component: RecordsComponent },
+    
     { 
       path: 'charts',
       component: ChartsComponent,

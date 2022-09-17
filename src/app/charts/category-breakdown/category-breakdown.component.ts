@@ -93,7 +93,7 @@ export class CategoryBreakdownComponent implements OnInit {
     const dateEnd = moment(end).format('L');
     let incomeList: Record[] = [];
     let expenseList: Record[] = [];
-    
+
     this.records.forEach(record => {
       const recordDate = moment(record.createdOn).format('L');
 

@@ -1,1 +1,7 @@
-<h1>Monthly Income Vs Expenses</h1>
+<div class="text-center">
+    <h1 class="my-4">Monthly Income Vs Expenses</h1>
+    <p-button label="show charts" (onClick)="populateChart()"></p-button>
+    <div class="col-lg-6 offset-lg-3 my-4">
+        <canvas id="barChart" height="400">{{barChart}}</canvas>
+    </div>
+</div>
