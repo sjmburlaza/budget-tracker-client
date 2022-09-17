@@ -22,6 +22,12 @@ export class AuthService {
     }, httpOptions);
   }
 
+  emailExists(email: string): Observable<any> {
+    return this.http.post(AUTH_API + 'email-exists', {
+      email
+    }, httpOptions);
+  }
+
   register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'register', {
       firstName,

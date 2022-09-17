@@ -13,10 +13,13 @@ export class RegisterComponent implements OnInit {
     firstName: null,
     lastName: null,
     email: null,
-    password: null
+    password: null,
+    confirmPassword: null
   };
+  
   isSuccessful = false;
   isSignUpFailed = false;
+  passwordMatched = true;
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -25,18 +28,32 @@ export class RegisterComponent implements OnInit {
   }
   
   onSubmit(): void {
-    const { firstName, lastName, email, password } = this.form;
-    this.authService.register(firstName, lastName, email, password).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        this.router.navigate(['/login']);
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
-    );
+    const { firstName, lastName, email, password, confirmPassword } = this.form;
+    if (password !== confirmPassword) {
+      this.passwordMatched = false;
+    } else {
+      this.authService.emailExists(email).subscribe(data => {
+        this.passwordMatched = true;
+
+        if (!data || data === false) {
+          this.authService.register(firstName, lastName, email, password).subscribe(
+            data => {
+              if (data) {
+                this.isSuccessful = true;
+                this.isSignUpFailed = false;
+                this.router.navigate(['/login']);
+              }
+            },
+            err => {
+              this.errorMessage = err.error.message;
+              this.isSignUpFailed = true;
+            }
+          );
+        } else {
+          this.errorMessage = 'Email already exists.';
+          this.isSignUpFailed = true;
+        }
+      })
+    }
   }
 }

@@ -34,12 +34,12 @@
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <input id="confirmPassword" type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
-                    <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                        <div *ngIf="password.errors['required']">Password is required!</div>
-                        <!-- <div>
-                          Password does not match!
-                        </div> -->
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]="form.confirmPassword"  required minlength="6" #confirmPassword="ngModel">
+                    <div class="alert-danger" *ngIf="confirmPassword.errors && f.submitted">
+                        <div *ngIf="confirmPassword.errors['required']">Password is required!</div>
+                    </div>
+                    <div class="alert-danger"  *ngIf="f.submitted && !passwordMatched">
+                        Password does not match!
                     </div>
                 </div>
                 <div class="form-group my-4">
