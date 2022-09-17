@@ -58,8 +58,10 @@ export class BalanceTrendComponent implements OnInit {
                 y: {
                     beginAtZero: true
                 }
-            }
-        }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+          }
         })
       }
     }

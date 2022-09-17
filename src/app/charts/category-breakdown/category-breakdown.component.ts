@@ -58,6 +58,10 @@ export class CategoryBreakdownComponent implements OnInit {
             hoverBackgroundColor: bgColors,
             // radius: '70%'
           }]
+        },
+        options: {  
+          responsive: true,
+          maintainAspectRatio: false
         }
       })
     }
@@ -83,6 +87,10 @@ export class CategoryBreakdownComponent implements OnInit {
             hoverBackgroundColor: bgColors,
             // radius: '70%'
           }]
+        },
+        options: {  
+          responsive: true,
+          maintainAspectRatio: false
         }
       })
     }
