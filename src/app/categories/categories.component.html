@@ -13,10 +13,26 @@
             <tr>
                 <td>{{category.type}}</td>
                 <td>{{category.name}}</td>
-                <td><button class="btn btn-sm button-delete">X</button></td>
+                <td><button type="button" class="btn btn-sm button-delete" (click)="showConfirm(category)">X</button></td>
             </tr>
         </ng-template>
     </p-table>
-
     <button type="button" class="btn btn-light my-5" (click)="show()">Add Category</button>
+
+    <p-toast position="center" key="c" (onClose)="onReject()" [baseZIndex]="10000">
+        <ng-template let-message pTemplate="message">
+            <div class="flex flex-column p-toast-message-custom py-4" style="flex: 1">
+                <div class="text-center">
+                    <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                    <h4>{{message.summary}}</h4>
+                    <p>{{message.detail}}</p>
+                </div>
+                <div class="text-center">
+                    <button type="button" (click)="onConfirm()" class="btn btn-light px-5 mx-1">Yes</button>
+                    <button type="button" (click)="onReject()" class="btn btn-light px-5 mx-1">No</button>
+                </div>
+            </div>
+        </ng-template>
+    </p-toast>
+
 </div>

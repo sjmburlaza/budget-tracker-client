@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Category, UserService } from '../_services/user.service';
 import { AddCategoryComponent } from './add-category/add-category.component';
@@ -6,16 +7,18 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
-  providers: [DialogService]
+  styleUrls: ['./categories.component.scss'],
+  providers: [DialogService, MessageService]
 })
 export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
+  category: Category | undefined;
 
   constructor(
     private userService: UserService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +31,6 @@ export class CategoriesComponent implements OnInit {
       this.categories.push(...categories);
     });
   }
-
 
   show() {
     const ref = this.dialogService.open(AddCategoryComponent, {
@@ -45,8 +47,29 @@ export class CategoriesComponent implements OnInit {
     } else if (window.innerWidth > 400 && window.innerWidth < 700) {
       return "60%"
     }
-
     return "30%"
+  }
+
+  showConfirm(category: Category) {
+    console.log(category)
+    this.messageService.clear();
+    this.messageService.add({
+      key: 'c', 
+      sticky: true, 
+      severity:'warn', 
+      summary:'Are you sure?', 
+      detail:'Confirm to proceed',
+      closable: false,
+    });
+  }
+
+  onConfirm() {
+    console.log(this.category)
+    this.messageService.clear('c');
+  }
+
+  onReject() {
+      this.messageService.clear('c');
   }
 
 }

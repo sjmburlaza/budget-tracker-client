@@ -1,0 +1,18 @@
+.button-delete {
+    border-color: grey;
+    color: red;
+    padding: 0px 6px 0px 6px;
+}
+
+:host ::ng-deep {
+    .p-toast-message-custom {
+        background-color: #E1CFE7;
+        border: solid #8A427A;
+        border-width: 0 0 0 6px;
+        color: #2c1e30;
+        
+        .p-toast-icon-close {
+            color: #2c1e30;
+        }
+    }
+}

@@ -43,13 +43,11 @@ export class UserService {
     )
   }
 
-  deleteCategory(id: number): Observable<Category> {
-    const url = `${this.API_URL}${id}`;
-
-    return this.http.delete<Category>(url, this.httpOptions).pipe(
-      tap(_=> console.log(`deleted category id=${id}`)),
-      catchError(this.handleError<Category>('delateCategory'))
-    );
+  deleteCategory(category: Category): Observable<Category> {
+    return this.http.put<Category>(this.API_URL + 'delete-category', category, this.httpOptions).pipe(
+      tap((deletedCategory: Category) => console.log(`deleted category with objID=${deletedCategory.objID}`)),
+      catchError(this.handleError<Category>('deletedCategory'))
+    )
   }
 
   addRecord(record: Record): Observable<Record> {

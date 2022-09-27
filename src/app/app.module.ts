@@ -19,6 +19,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 import { NgChartsModule } from 'ng2-charts';
 import { CalendarModule } from 'primeng/calendar';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
@@ -52,6 +53,7 @@ import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-e
     TableModule,
     ButtonModule,
     CalendarModule,
+    ToastModule,
     DynamicDialogModule,
     AppRoutingModule,
     HttpClientModule,
