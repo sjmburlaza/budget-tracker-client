@@ -49,17 +49,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   updateCategory(category: Category): void {
-    this.category = {...category}
+    this.category = {...category};
     this.categoryDialog = true;
-  }
-
-  onConfirm() {
-    console.log(this.category)
-    this.messageService.clear('c');
-  }
-
-  onReject() {
-      this.messageService.clear('c');
   }
 
   onSubmit(): void {

@@ -90,7 +90,6 @@ export class AddRecordComponent implements OnInit {
   onSubmit(): void {
     let { categoryName, categoryType, description, amount } = this.record;
     const categoryId = this.getCategoryId(categoryName, categoryType);
-    console.log('categoryId', categoryId)
     description = description.trim();
 
     if (!categoryName || !categoryType || !description || !amount){

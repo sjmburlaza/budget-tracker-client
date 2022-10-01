@@ -8,9 +8,9 @@
                 <th>Type</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Amount</th>
-                <th>Balance</th>
-                <th>Action</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Balance</th>
+                <th class="text-center">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-record>
@@ -19,12 +19,51 @@
                 <td>{{record.categoryType}}</td>
                 <td>{{record.categoryName}}</td>
                 <td>{{record.description}}</td>
-                <td>{{record.amount}}</td>
-                <td>{{record.balance}}</td>
-                <td><button class="btn btn-sm button-delete">X</button></td>
+                <td style="text-align: right;">{{record.amount}}</td>
+                <td style="text-align: right;">{{record.balance}}</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-outline-dark border-0" (click)="updateRecord(record)"><i class="bi bi-pencil-square"></i></button>
+                    <button type="button" class="btn btn-outline-danger border-0" (click)="deleteRecord(record)"><i class="bi bi-trash"></i></button>
+                </td>
             </tr>
         </ng-template>
     </p-table>
-
-    <button type="button" class="btn btn-light my-5" (click)="show()">Add New Record</button>
+    <button type="button" class="btn btn-light my-5" (click)="createNew()">Add New Record</button>
 </div>
+<p-dialog [(visible)]="recordDialog"  [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="card text-center p-4">
+            <h4>Update Record</h4>
+            <form name="form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="form-group my-2">
+                    <select type="select" name="type" class="form-control form-select" 
+                            [(ngModel)]="record.categoryType"
+                            required 
+                            #type="ngModel"
+                            (ngModelChange)="onCategoryTypeChange()">
+                        <option [ngValue]="null" disabled selected>Select Type</option>
+                        <option value="Income">Income</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group my-2">
+                    <select type="select" name="name" class="form-control form-select" [(ngModel)]="record.categoryName" required #name="ngModel">
+                        <option [ngValue]="null" disabled selected>Select Name</option>
+                        <option *ngFor="let option of categoryNames" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+                <div class="form-group my-2">
+                    <input type="text" class="form-control" name="description" placeholder="Description" [(ngModel)]="record.description" required #description="ngModel">
+                </div>
+                <div class="form-group my-2">
+                    <input type="text" class="form-control" name="amount" placeholder="Amount" [(ngModel)]="record.amount" required #amount="ngModel">
+                </div>
+                <div class="form-group my-2">
+                    <button type="submit" class="btn btn-primary mx-1">Submit</button>
+                    <button type="button" class="btn btn-light mx-1" (click)="close()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</p-dialog>
+<p-confirmDialog class="p-toast-message-custom" [style]="{width: '450px'}"></p-confirmDialog>

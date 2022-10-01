@@ -58,6 +58,20 @@ export class UserService {
     )
   }
 
+  updateRecord(record: Record): Observable<Record> {
+    return this.http.put<Record>(this.API_URL + 'update-record', record, this.httpOptions).pipe(
+      tap((updatedRecord: Record) => console.log(`updated record with name=${updatedRecord.categoryName}`)),
+      catchError(this.handleError<Record>('updatedRecord'))
+    )
+  }
+
+  deleteRecord(record: Record): Observable<Record> {
+    return this.http.put<Record>(this.API_URL + 'delete-record', record, this.httpOptions).pipe(
+      tap((deletedRecord: Record) => console.log(`deleted record with name=${deletedRecord.categoryName}`)),
+      catchError(this.handleError<Record>('deletedRecord'))
+    )
+  }
+
 
     /**
    * Handle Http operation that failed.
