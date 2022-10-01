@@ -4,13 +4,12 @@ import { catchError, Observable, of, tap } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 
 export interface Category {
-  objID?: number,
   name: string,
-  type: string
+  type: string,
+  id?: string
 }
 
 export interface Record {
-  objID?: number,
   name: string,
   type: string,
   description: string,
@@ -38,21 +37,21 @@ export class UserService {
 
   addCategory(category: Category): Observable<Category> {
     return this.http.post<Category>(this.API_URL + 'add-category', category, this.httpOptions).pipe(
-      tap((newCategory: Category) => console.log(`added category with objID=${newCategory.objID}`)),
+      tap((newCategory: Category) => console.log(`added category with name=${newCategory.name}`)),
       catchError(this.handleError<Category>('addCategory'))
     )
   }
 
-  deleteCategory(category: Category): Observable<Category> {
-    return this.http.put<Category>(this.API_URL + 'delete-category', category, this.httpOptions).pipe(
-      tap((deletedCategory: Category) => console.log(`deleted category with objID=${deletedCategory.objID}`)),
-      catchError(this.handleError<Category>('deletedCategory'))
+  updateCategory(category: Category): Observable<Category> {
+    return this.http.put<Category>(this.API_URL + 'update-category', category, this.httpOptions).pipe(
+      tap((updatedCategory: Category) => console.log(`updated category with name=${updatedCategory.name}`)),
+      catchError(this.handleError<Category>('updatedCategory'))
     )
   }
 
   addRecord(record: Record): Observable<Record> {
     return this.http.post<Record>(this.API_URL + 'add-record', record, this.httpOptions).pipe(
-      tap((newRecord: Record) => console.log(`added record with objID=${newRecord.objID}`)),
+      tap((newRecord: Record) => console.log(`added record with name=${newRecord.name}`)),
       catchError(this.handleError<Record>('addRecord'))
     )
   }

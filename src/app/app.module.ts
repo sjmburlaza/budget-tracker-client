@@ -17,17 +17,20 @@ import { ChartsComponent } from './charts/charts.component';
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 import { TableModule } from 'primeng/table';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { NgChartsModule } from 'ng2-charts';
 import { CalendarModule } from 'primeng/calendar';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { UserService } from './_services/user.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddRecordComponent } from './records/add-record/add-record.component';
 import { BalanceTrendComponent } from './charts/balance-trend/balance-trend.component';
 import { CategoryBreakdownComponent } from './charts/category-breakdown/category-breakdown.component';
 import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-expense.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {DialogModule} from 'primeng/dialog';
 
 
 @NgModule({
@@ -55,14 +58,19 @@ import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-e
     CalendarModule,
     ToastModule,
     DynamicDialogModule,
+    DialogModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
     NgChartsModule,
+    ConfirmDialogModule
   ],
   providers: [
     // authInterceptorProviders
-    UserService
+    UserService,
+    MessageService,
+    ConfirmationService,
+    DialogService
   ],
   bootstrap: [AppComponent]
 })
