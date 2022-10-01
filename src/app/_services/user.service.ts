@@ -6,16 +6,18 @@ import { TokenStorageService } from './token-storage.service';
 export interface Category {
   name: string,
   type: string,
-  id?: string
+  id?: string | undefined
 }
 
 export interface Record {
-  name: string,
-  type: string,
+  categoryName: string,
+  categoryType: string,
+  categoryId?: string
   description: string,
   amount: number,
-  balance: number,
-  createdOn?: Date | string
+  balance?: number,
+  createdOn?: Date | string,
+  isDeleted?: boolean
 }
 
 @Injectable({
@@ -51,7 +53,7 @@ export class UserService {
 
   addRecord(record: Record): Observable<Record> {
     return this.http.post<Record>(this.API_URL + 'add-record', record, this.httpOptions).pipe(
-      tap((newRecord: Record) => console.log(`added record with name=${newRecord.name}`)),
+      tap((newRecord: Record) => console.log(`added record with name=${newRecord.categoryName}`)),
       catchError(this.handleError<Record>('addRecord'))
     )
   }

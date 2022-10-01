@@ -81,10 +81,10 @@ export class BalanceTrendComponent implements OnInit {
       }
       if (recordDate >= dateStart && recordDate <= dateEnd) {
         if (!(dateList.includes(recordDate))) {
-          if (record.type === 'Income') {
+          if (record.categoryType === 'Income') {
             runningBalance += +record.amount;
             balanceList.push(runningBalance);
-          } else if (record.type === 'Expense') {
+          } else if (record.categoryType === 'Expense') {
             runningBalance -= +record.amount;
             balanceList.push(runningBalance);
           }
@@ -92,11 +92,11 @@ export class BalanceTrendComponent implements OnInit {
 
         } else {
           const lastBalance = balanceList[balanceList.length-1]
-          if (record.type === 'Income') {
+          if (record.categoryType === 'Income') {
             runningBalance = +lastBalance + +record.amount;
             balanceList.pop();
             balanceList.push(runningBalance);
-          } else if (record.type === 'Expense') {
+          } else if (record.categoryType === 'Expense') {
             runningBalance = +lastBalance - +record.amount;
             balanceList.pop();
             balanceList.push(runningBalance);

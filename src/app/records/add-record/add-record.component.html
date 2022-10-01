@@ -3,7 +3,7 @@
     <form name="form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group my-2">
             <select type="select" name="type" class="form-control form-select" 
-                    [(ngModel)]="form.type"
+                    [(ngModel)]="record.categoryType"
                     required 
                     #type="ngModel"
                     (ngModelChange)="onCategoryTypeChange();">
@@ -13,16 +13,16 @@
             </select>
         </div>
         <div class="form-group my-2">
-            <select type="select" name="name" class="form-control form-select" [(ngModel)]="form.name" required #name="ngModel">
+            <select type="select" name="name" class="form-control form-select" [(ngModel)]="record.categoryName" required #name="ngModel">
                 <option [ngValue]="null" disabled selected>Select Name</option>
                 <option *ngFor="let option of categoryNames" [value]="option">{{option}}</option>
             </select>
         </div>
         <div class="form-group my-2">
-            <input type="text" class="form-control" name="description" placeholder="Description" [(ngModel)]="form.description" required #description="ngModel">
+            <input type="text" class="form-control" name="description" placeholder="Description" [(ngModel)]="record.description" required #description="ngModel">
         </div>
         <div class="form-group my-2">
-            <input type="text" class="form-control" name="amount" placeholder="Amount" [(ngModel)]="form.amount" required #amount="ngModel">
+            <input type="text" class="form-control" name="amount" placeholder="Amount" [(ngModel)]="record.amount" required #amount="ngModel">
         </div>
         <div class="form-group my-2">
             <button type="submit" class="btn btn-primary mx-1">Submit</button>

@@ -52,4 +52,18 @@ export class RecordsComponent implements OnInit {
     return "30%"
   }
 
+  // delete(category: Category) {
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure you want to delete ' + category.name + '?',
+  //     header: 'Confirm',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //         this.userService.updateCategory(category).subscribe(data => {
+  //           console.log(data)
+  //         })
+  //         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+  //     }
+  // });
+  // }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Category, UserService } from '../_services/user.service';
 import { AddCategoryComponent } from './add-category/add-category.component';
@@ -8,17 +8,23 @@ import { AddCategoryComponent } from './add-category/add-category.component';
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
-  providers: [DialogService, MessageService]
+  providers: [DialogService, MessageService, ConfirmationService]
 })
 export class CategoriesComponent implements OnInit {
 
+  categoryDialog: boolean = false;
+  isSuccessful = false;
   categories: Category[] = [];
-  category: Category | undefined;
+  category: Category = {
+    name: '',
+    type: '',
+  }
 
   constructor(
     private userService: UserService,
     public dialogService: DialogService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -27,40 +33,24 @@ export class CategoriesComponent implements OnInit {
 
   getCategories(): void {
     this.userService.getDetails().subscribe(data => {
-      const categories = data.categories;
-      this.categories.push(...categories);
+      const categories: Category[] = data.categories;
+      console.log(categories)
+      this.categories = categories;
     });
   }
 
-  show() {
+  createNew(): void {
     const ref = this.dialogService.open(AddCategoryComponent, {
-        width: this.getDialogWidth(),
-        contentStyle: {"min-width": "300px"},
-        baseZIndex: 10000,
-        closable: false
+      width: '450px',
+      contentStyle: {"min-width": "300px"},
+      baseZIndex: 10000,
+      closable: false
     });
   }
 
-  getDialogWidth(): string {
-    if (window.innerWidth < 400) {
-      return "90%"
-    } else if (window.innerWidth > 400 && window.innerWidth < 700) {
-      return "60%"
-    }
-    return "30%"
-  }
-
-  showConfirm(category: Category) {
-    console.log(category)
-    this.messageService.clear();
-    this.messageService.add({
-      key: 'c', 
-      sticky: true, 
-      severity:'warn', 
-      summary:'Are you sure?', 
-      detail:'Confirm to proceed',
-      closable: false,
-    });
+  updateCategory(category: Category): void {
+    this.category = {...category}
+    this.categoryDialog = true;
   }
 
   onConfirm() {
@@ -70,6 +60,26 @@ export class CategoriesComponent implements OnInit {
 
   onReject() {
       this.messageService.clear('c');
+  }
+
+  onSubmit(): void {
+    console.log(this.category)
+    let { name, type } = this.category;
+    name = name.trim();
+
+    if (!name || !type) {
+      return;
+    }
+    this.userService.updateCategory( this.category as Category).subscribe( data => {
+      console.log(data);
+      this.isSuccessful = true;
+    });
+    this.categoryDialog = false;
+    window.location.reload();
+  }
+
+  close() {
+    this.categoryDialog = false;
   }
 
 }

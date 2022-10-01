@@ -40,7 +40,7 @@ export class CategoryBreakdownComponent implements OnInit {
 
   getIncomeData(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('incomePieChart');
-    const names = this.incomeRecords.map(record => record.name);
+    const names = this.incomeRecords.map(record => record.categoryName);
     const amounts = this.incomeRecords.map(record => record.amount);
     const bgColors = this.incomeRecords.map(() => `#${this.colorRandomizer()}`);
 
@@ -69,7 +69,7 @@ export class CategoryBreakdownComponent implements OnInit {
 
   getExpenseData(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('expensePieChart');
-    const names = this.expenseRecords.map(record => record.name);
+    const names = this.expenseRecords.map(record => record.categoryName);
     const amounts = this.expenseRecords.map(record => record.amount);
     const bgColors = this.expenseRecords.map(() => `#${this.colorRandomizer()}`);
 
@@ -106,9 +106,9 @@ export class CategoryBreakdownComponent implements OnInit {
       const recordDate = moment(record.createdOn).format('L');
 
       if(recordDate >= dateStart && recordDate <= dateEnd) {
-        if (record.type === 'Income') {
+        if (record.categoryType === 'Income') {
           incomeList.push(record);
-        } else if (record.type === 'Expense') {
+        } else if (record.categoryType === 'Expense') {
           expenseList.push(record);
         }
       }

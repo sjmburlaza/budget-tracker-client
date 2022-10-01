@@ -53,9 +53,9 @@ export class IncomeVsExpenseComponent implements OnInit, AfterContentInit {
     let expense: Record[] = [];
 
     this.records.forEach(record => {
-      if  (record.type === 'Income') {
+      if  (record.categoryType === 'Income') {
         income.push(record)
-      } else if (record.type === 'Expense') {
+      } else if (record.categoryType === 'Expense') {
         expense.push(record)
       }
     })

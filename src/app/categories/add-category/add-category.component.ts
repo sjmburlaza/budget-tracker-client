@@ -9,7 +9,7 @@ import { Category, UserService } from 'src/app/_services/user.service';
 })
 export class AddCategoryComponent implements OnInit {
 
-  form: any = {
+  category: any = {
     name: null,
     type: null
   };
@@ -23,10 +23,10 @@ export class AddCategoryComponent implements OnInit {
   }
   
   onSubmit(): void {
-    let { name, type } = this.form;
+    let { name, type } = this.category;
     name = name.trim();
 
-    if (!name){
+    if (!name || !type){
       return;
     }
     this.userService.addCategory({name, type} as Category).subscribe( data => {

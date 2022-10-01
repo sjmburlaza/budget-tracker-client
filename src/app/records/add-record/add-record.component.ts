@@ -9,9 +9,9 @@ import { Category, Record, UserService } from 'src/app/_services/user.service';
 })
 export class AddRecordComponent implements OnInit {
 
-  form: any = {
-    type: null,
-    name: null,
+  record: any = {
+    categoryType: null,
+    categoryName: null,
     description: null,
     amount: null
   };
@@ -20,7 +20,6 @@ export class AddRecordComponent implements OnInit {
   categories: Category[] = [];
   records: Record[] = [];
   categoryNames: any = [];
-  // newBalance: number = 0;
 
   constructor(
     public ref: DynamicDialogRef,
@@ -34,13 +33,13 @@ export class AddRecordComponent implements OnInit {
   onCategoryTypeChange(): void {
     this.categoryNames = [];
 
-    if (this.form.type === 'Income') {
+    if (this.record.categoryType === 'Income') {
       this.categories.forEach(a => {
         if (a.type === 'Income') {
           this.categoryNames.push(a.name)
         }
       })
-    } else if (this.form.type === 'Expense') {
+    } else if (this.record.categoryType === 'Expense') {
       this.categories.forEach(a => {
         if (a.type === 'Expense') {
           this.categoryNames.push(a.name)
@@ -51,8 +50,15 @@ export class AddRecordComponent implements OnInit {
 
   getDetails(): void {
     this.userService.getDetails().subscribe(data => {
-      this.categories = data.categories;
-      this.records = data.records
+      this.categories = data.categories.map((c: any) => {
+        return {
+          name: c.name,
+          type: c.type,
+          id: c._id,
+        }
+      });
+      console.log(this.categories)
+      this.records = data.records;
     });
   }
 
@@ -72,17 +78,25 @@ export class AddRecordComponent implements OnInit {
     }
     return newBalance;
   }
+
+  getCategoryId(name: string, type: string): string {
+    const cat = this.categories.find(c => c.name === name && c.type === type)
+    if (cat && cat.id) {
+      return cat.id;
+    }
+    return 'none';
+  }
   
   onSubmit(): void {
-    let { name, type, description, amount } = this.form;
-    let balance: number = this.getBalance(type, amount);
-    balance = balance ? balance : amount;
+    let { categoryName, categoryType, description, amount } = this.record;
+    const categoryId = this.getCategoryId(categoryName, categoryType);
+    console.log('categoryId', categoryId)
     description = description.trim();
 
-    if (!description || !amount){
+    if (!categoryName || !categoryType || !description || !amount){
       return;
     }
-    this.userService.addRecord({name, type, description, amount, balance} as Record)
+    this.userService.addRecord({categoryName, categoryType, categoryId, description, amount} as Record)
     .subscribe( data => {
       console.log(data);
       this.isSuccessful = true;

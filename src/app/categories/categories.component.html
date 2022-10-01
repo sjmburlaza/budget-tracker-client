@@ -6,33 +6,40 @@
             <tr>
                 <th>Type</th>
                 <th>Name</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-category>
             <tr>
                 <td>{{category.type}}</td>
                 <td>{{category.name}}</td>
-                <td><button type="button" class="btn btn-sm button-delete" (click)="showConfirm(category)">X</button></td>
+                <td class="text-center"><button type="button" class="btn btn-outline-dark border-0" (click)="updateCategory(category)"><i class="bi bi-pencil-square"></i></button></td>
             </tr>
         </ng-template>
     </p-table>
-    <button type="button" class="btn btn-light my-5" (click)="show()">Add Category</button>
-
-    <p-toast position="center" key="c" (onClose)="onReject()" [baseZIndex]="10000">
-        <ng-template let-message pTemplate="message">
-            <div class="flex flex-column p-toast-message-custom py-4" style="flex: 1">
-                <div class="text-center">
-                    <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
-                    <h4>{{message.summary}}</h4>
-                    <p>{{message.detail}}</p>
-                </div>
-                <div class="text-center">
-                    <button type="button" (click)="onConfirm()" class="btn btn-light px-5 mx-1">Yes</button>
-                    <button type="button" (click)="onReject()" class="btn btn-light px-5 mx-1">No</button>
-                </div>
-            </div>
-        </ng-template>
-    </p-toast>
-
+    <button type="button" class="btn btn-light my-5" (click)="createNew()">Add Category</button>
 </div>
+<p-dialog [(visible)]="categoryDialog"  [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="card text-center p-4">
+            <h4>Update Category</h4>
+            <form name="form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="form-group my-2">
+                    <select type="select" name="type" class="form-control form-select" [(ngModel)]="category.type" required #type="ngModel">
+                        <option [ngValue]="null" disabled selected>Select Type</option>
+                        <option value="Income">Income</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group my-2">
+                    <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="category.name" required #name="ngModel">
+                </div>
+                <div class="form-group my-2">
+                    <button type="submit" class="btn btn-primary mx-1">Submit</button>
+                    <button type="button" class="btn btn-light mx-1" (click)="close()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
