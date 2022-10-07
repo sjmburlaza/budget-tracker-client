@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Category, UserService } from '../_services/user.service';
-import { AddCategoryComponent } from './add-category/add-category.component';
+
+interface CategoryNull {
+  name: null,
+  type: null
+}
 
 @Component({
   selector: 'app-categories',
@@ -14,8 +18,10 @@ export class CategoriesComponent implements OnInit {
 
   categoryDialog: boolean = false;
   isSuccessful = false;
+  isNew = false;
+  isForUpdate = false;
   categories: Category[] = [];
-  category: Category = {
+  category: Category | CategoryNull = {
     name: '',
     type: '',
   }
@@ -23,8 +29,6 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private userService: UserService,
     public dialogService: DialogService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -40,33 +44,47 @@ export class CategoriesComponent implements OnInit {
   }
 
   createNew(): void {
-    const ref = this.dialogService.open(AddCategoryComponent, {
-      width: '450px',
-      contentStyle: {"min-width": "300px"},
-      baseZIndex: 10000,
-      closable: false
-    });
+    this.isNew = true;
+    this.isForUpdate = false;
+    this.category = {
+      name: null,
+      type: null,
+    };
+    this.isSuccessful = false;
+    this.categoryDialog = true;
   }
 
   updateCategory(category: Category): void {
+    this.isNew = false;
+    this.isForUpdate = true;
     this.category = {...category};
+    this.isSuccessful = false;
     this.categoryDialog = true;
   }
 
   onSubmit(): void {
-    console.log(this.category)
     let { name, type } = this.category;
-    name = name.trim();
 
     if (!name || !type) {
       return;
     }
-    this.userService.updateCategory( this.category as Category).subscribe( data => {
-      console.log(data);
-      this.isSuccessful = true;
-    });
-    this.categoryDialog = false;
-    window.location.reload();
+    name = name.trim();
+
+    if (this.isNew) {
+      this.userService.addCategory(this.category as Category).subscribe( data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.getCategories();
+        this.categoryDialog = false;
+      });
+    } else if (this.isForUpdate) {
+      this.userService.updateCategory(this.category as Category).subscribe( data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.getCategories();
+        this.categoryDialog = false;
+      });
+    }
   }
 
   close() {

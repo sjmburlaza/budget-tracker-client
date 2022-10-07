@@ -99,12 +99,12 @@ export class RecordsComponent implements OnInit {
       return;
     }
     this.userService.updateRecord(this.record as Record)
-    .subscribe( data => {
+    .subscribe(data => {
       this.isSuccessful = true;
     });
 
     this.recordDialog = false;
-    window.location.reload();
+    this.getRecords();
   }
 
   deleteRecord(record: Record): void {

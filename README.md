@@ -7,7 +7,7 @@ I liked the overall idea of the project that's why I decided to convert it into 
 
 The demo of the project can be found [here](https://budget-tracker-swart.vercel.app/home)
 
-Note: The backend of this projects hasn't been deployed yet because my favorite backend hosting service aka Heroku will no longer offer free hosting and haven't found a new and reliable one yet so for the front-end to be able to function, the server needs to be ran in local environment first.
+Note: The backend of this projects hasn't been deployed yet because my favorite backend hosting service aka Heroku will no longer offer free hosting and I haven't found a new one that is free, user-friendly and reliable. So for the front-end to be able to function, the server needs to be ran in the local environment first.
 
 ## Features and Functionalities
 - Register through email

@@ -22,7 +22,6 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { NgChartsModule } from 'ng2-charts';
 import { CalendarModule } from 'primeng/calendar';
-import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { UserService } from './_services/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AddRecordComponent } from './records/add-record/add-record.component';
@@ -43,7 +42,6 @@ import {DialogModule} from 'primeng/dialog';
     CategoriesComponent,
     RecordsComponent,
     ChartsComponent,
-    AddCategoryComponent,
     AddRecordComponent,
     BalanceTrendComponent,
     CategoryBreakdownComponent,
