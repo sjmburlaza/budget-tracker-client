@@ -3,7 +3,13 @@ import * as moment from 'moment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Category, Record, UserService } from '../_services/user.service';
-import { AddRecordComponent } from './add-record/add-record.component';
+
+interface RecordNull {
+  categoryName: null,
+  categoryType: null,
+  description: null,
+  amount: null
+}
 
 @Component({
   selector: 'app-records',
@@ -15,10 +21,12 @@ export class RecordsComponent implements OnInit {
 
   recordDialog: boolean = false;
   isSuccessful = false;
+  isNew = false;
+  isForUpdate = false;
   categories: Category[] = [];
   categoryNames: any = [];
   records: Record[] = [];
-  record: Record = {
+  record: Record | RecordNull = {
     categoryName: '',
     categoryType: '',
     description: '',
@@ -44,7 +52,7 @@ export class RecordsComponent implements OnInit {
       activeRecords.forEach(a => {
         return a.createdOn = moment(a.createdOn).format('ll')
       })
-      this.records.push(...activeRecords);
+      this.records = activeRecords;
       this.categories = categories;
     })
   }
@@ -68,16 +76,24 @@ export class RecordsComponent implements OnInit {
   }
 
   createNew() {
-    const ref = this.dialogService.open(AddRecordComponent, {
-        width: '450px',
-        contentStyle: {"min-width": "300px"},
-        baseZIndex: 10000,
-        closable: false
-    });
+    this.isNew = true;
+    this.isForUpdate = false;
+    this.record = {
+      categoryName: null,
+      categoryType: null,
+      description: null,
+      amount: null
+    };
+    this.isSuccessful = false;
+    this.onCategoryTypeChange();
+    this.recordDialog = true;
   }
 
   updateRecord(record: Record): void {
+    this.isNew = false;
+    this.isForUpdate = true;
     this.record = {...record};
+    this.isSuccessful = false;
     this.onCategoryTypeChange();
     this.recordDialog = true;
   }
@@ -92,19 +108,28 @@ export class RecordsComponent implements OnInit {
 
   onSubmit(): void {
     let { categoryName, categoryType, description, amount } = this.record;
-    const categoryId = this.getCategoryId(categoryName, categoryType);
-    description = description.trim();
 
     if (!categoryName || !categoryType || !description || !amount){
       return;
     }
-    this.userService.updateRecord(this.record as Record)
-    .subscribe(data => {
-      this.isSuccessful = true;
-    });
+    const categoryId = this.getCategoryId(categoryName, categoryType);
+    description = description.trim();
 
-    this.recordDialog = false;
-    this.getRecords();
+    if (this.isNew) {
+      this.userService.addRecord({categoryName, categoryType, categoryId, description, amount} as Record)
+      .subscribe( data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.recordDialog = false;
+        this.getRecords();
+      });
+    } else if (this.isForUpdate) {
+      this.userService.updateRecord(this.record as Record).subscribe(data => {
+        this.isSuccessful = true;
+        this.recordDialog = false;
+        this.getRecords();
+      });
+    }
   }
 
   deleteRecord(record: Record): void {
@@ -117,7 +142,7 @@ export class RecordsComponent implements OnInit {
         .subscribe( data => {
           console.log(data)
           this.isSuccessful = true;
-          window.location.reload();
+          this.getRecords();
         });
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Record Deleted', life: 3000});
       }

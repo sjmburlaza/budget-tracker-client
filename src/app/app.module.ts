@@ -24,12 +24,12 @@ import { NgChartsModule } from 'ng2-charts';
 import { CalendarModule } from 'primeng/calendar';
 import { UserService } from './_services/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { AddRecordComponent } from './records/add-record/add-record.component';
 import { BalanceTrendComponent } from './charts/balance-trend/balance-trend.component';
 import { CategoryBreakdownComponent } from './charts/category-breakdown/category-breakdown.component';
 import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-expense.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -42,7 +42,6 @@ import {DialogModule} from 'primeng/dialog';
     CategoriesComponent,
     RecordsComponent,
     ChartsComponent,
-    AddRecordComponent,
     BalanceTrendComponent,
     CategoryBreakdownComponent,
     IncomeVsExpenseComponent
@@ -61,7 +60,8 @@ import {DialogModule} from 'primeng/dialog';
     HttpClientModule,
     NgbModule,
     NgChartsModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    InputTextModule
   ],
   providers: [
     // authInterceptorProviders
