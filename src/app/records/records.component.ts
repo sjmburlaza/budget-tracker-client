@@ -47,11 +47,12 @@ export class RecordsComponent implements OnInit {
   getRecords(): void {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
+      console.log(data.records)
       const records: Record[] = data.records;
-      const activeRecords = records.filter(r => r.isDeleted === false)
-      activeRecords.forEach(a => {
+      const activeRecords = records.filter(r => r.isDeleted === false);
+      activeRecords.map(a => {
         return a.createdOn = moment(a.createdOn).format('ll')
-      })
+      });
       this.records = activeRecords;
       this.categories = categories;
     })
@@ -138,8 +139,7 @@ export class RecordsComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.updateRecord(record as Record)
-        .subscribe( data => {
+        this.userService.deleteRecord(record as Record).subscribe( data => {
           console.log(data)
           this.isSuccessful = true;
           this.getRecords();

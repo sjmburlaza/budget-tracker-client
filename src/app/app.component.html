@@ -1,25 +1,48 @@
 <div id="app">
   <nav class="navbar navbar-expand-lg navbar-light shadow-5-strong px-4">
     <a href="#" class="navbar-brand">PocketGuard</a>
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/user-profile" class="nav-link" routerLink="user-profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a href="/categories" class="nav-link" routerLink="categories">Categories</a>
-      </li>
-      <li class="nav-item">
-        <a href="/records" class="nav-link" routerLink="records">Records</a>
-      </li>
-      <li class="nav-item">
-        <a href="/charts/balance-trend" class="nav-link" routerLink="charts/balance-trend">Charts</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">Sign-out</a>
-      </li>
-    </ul>
+    <button class="navbar-toggler" type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/user-profile" class="nav-link" routerLink="user-profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="/categories" class="nav-link" routerLink="categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a href="/records" class="nav-link" routerLink="records">Records</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" 
+            href="/charts/balance-trend" 
+            id="navbarDropdownMenuLink" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+            routerLink="charts/balance-trend">
+            Charts
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/charts/balance-trend" routerLink="charts/balance-trend">Balance Trend</a>
+            <a class="dropdown-item" href="/charts/category-breakdown" routerLink="charts/category-breakdown">Category Breakdown</a>
+            <a class="dropdown-item" href="/charts/income-vs-expense" routerLink="charts/income-vs-expense">Income Vs Expense</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">Sign-out</a>
+        </li>
+      </ul>
+    </div>
   </nav>
-  <div class="container-fluid my-5">
+  <div class="container-fluid">
     <router-outlet></router-outlet>
   </div>
 </div>

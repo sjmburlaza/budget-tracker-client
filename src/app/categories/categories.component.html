@@ -1,13 +1,14 @@
-<div class="container col-md-6">
+<div class="container col-md-10">
     <h2 class="text-center">Categories</h2>
     <div class="d-flex flex-row-reverse">
         <button type="button" class="btn btn-light" (click)="createNew()">Add Category</button>
     </div>
     <hr>
-    <p-table #categoryTable [value]="categories" 
-        styleClass="p-datatable-striped" 
+    <p-table #categoryTable [value]="categories"
+        class=""
+        styleClass="p-datatable-sm p-datatable-striped" 
         responsiveLayout="scroll"
-        scrollHeight="300px"
+        scrollHeight="350px"
         style="width: 100%;">
         <ng-template pTemplate="header">
             <tr>
@@ -35,39 +36,37 @@
     [closable]="false"
     styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <div class="card text-center p-4">
-            <h4 *ngIf="isNew">Add New Category</h4>
-            <h4 *ngIf="isForUpdate">Update Category</h4>
-            <form name="form" *ngIf="!isSuccessful" name="form" 
-                (ngSubmit)="f.form.valid && onSubmit()" 
-                #f="ngForm" 
-                novalidate>
-                <div class="form-group my-2">
-                    <select type="select" 
-                        name="type" 
-                        class="form-control form-select" 
-                        [(ngModel)]="category.type" 
-                        required 
-                        #type="ngModel">
-                        <option [ngValue]="null" disabled selected>Select Type</option>
-                        <option value="Income">Income</option>
-                        <option value="Expense">Expense</option>
-                    </select>
-                </div>
-                <div class="form-group my-2">
-                    <input type="text" 
-                        class="form-control" 
-                        name="name" 
-                        placeholder="Name" 
-                        [(ngModel)]="category.name" 
-                        required 
-                        #name="ngModel">
-                </div>
-                <div class="form-group my-2">
-                    <button type="submit" class="btn btn-primary mx-1">Submit</button>
-                    <button type="button" class="btn btn-light mx-1" (click)="close()">Cancel</button>
-                </div>
-            </form>
-        </div>
+        <h4 *ngIf="isNew" class="text-center">Add New Category</h4>
+        <h4 *ngIf="isForUpdate" class="text-center">Update Category</h4>
+        <form name="form" *ngIf="!isSuccessful" name="form" 
+            (ngSubmit)="f.form.valid && onSubmit()" 
+            #f="ngForm" 
+            novalidate>
+            <div class="form-group my-2">
+                <select type="select" 
+                    name="type" 
+                    class="form-control form-select" 
+                    [(ngModel)]="category.type" 
+                    required 
+                    #type="ngModel">
+                    <option [ngValue]="null" disabled selected>Select Type</option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
+            </div>
+            <div class="form-group my-2">
+                <input type="text" 
+                    class="form-control" 
+                    name="name" 
+                    placeholder="Name" 
+                    [(ngModel)]="category.name" 
+                    required 
+                    #name="ngModel">
+            </div>
+            <div class="form-group my-2 text-center">
+                <button type="submit" class="btn btn-primary mx-1">Submit</button>
+                <button type="button" class="btn btn-light mx-1" (click)="close()">Cancel</button>
+            </div>
+        </form>
     </ng-template>
 </p-dialog>

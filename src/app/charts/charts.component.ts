@@ -14,6 +14,7 @@ export class ChartsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.showBalanceTrend();
   }
 
   showBalanceTrend(): void {

@@ -1,14 +1,18 @@
-<div class="text-center">
-    <h1 class="my-4">Balance Trend</h1>
-    <p-calendar [(ngModel)]="rangeDates" 
-        selectionMode="range" 
-        [readonlyInput]="true" 
-        inputId="range" 
-        placeholder="Select Date"
-        [showIcon]="true"
-        (onSelect)="onSelect()">
-    </p-calendar>
-    <div class="col-lg-6 offset-lg-3 my-4">
-        <canvas id="lineChart" height="400">{{chart}}</canvas>
+<div class="">
+    <div class="mb-4 mt-3 col-md-6 offset-md-3 d-flex justify-content-between">
+        <h2 class="">Balance Trend</h2>
+        <div class="">
+            <p-calendar [(ngModel)]="rangeDates" 
+                selectionMode="range" 
+                [readonlyInput]="true" 
+                inputId="range" 
+                placeholder="Select Date"
+                [showIcon]="true"
+                (onSelect)="onSelect()">
+            </p-calendar>
+        </div>
+    </div>
+    <div class="col-lg-6 offset-lg-3 my-4 text-center">
+        <canvas #myCanvas id="lineChart" height="400">{{chart}}</canvas>
     </div>
 </div>

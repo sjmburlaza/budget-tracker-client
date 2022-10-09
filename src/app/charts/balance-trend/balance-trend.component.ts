@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions } from 'chart.js';
 import * as moment from 'moment';
 import { Record, UserService } from 'src/app/_services/user.service';
@@ -17,20 +17,34 @@ export class BalanceTrendComponent implements OnInit {
 
   public chart: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+
+   }
 
   ngOnInit(): void {
     this.getDetails();
+    this.rangeDates = [new Date(2022, 7, 1), new Date()]
+  }
+
+  ngAfterViewInit(): void {
+    this.onSelect();
   }
 
   getDetails(): void {
     this.userService.getDetails().subscribe(data => {
-      this.records = data.records;
+      const records: Record[] = data.records;
+      const activeRecords = records.filter(r => r.isDeleted === false);
+      this.records = activeRecords;
+      const firstRecordDate = activeRecords[0].createdOn;
+      if (firstRecordDate) {
+        this.rangeDates = [new Date(firstRecordDate), new Date()]
+      }
     });
   }
 
   onSelect(): void {
-    if (this.rangeDates[1]) {
+    console.log('yowwww')
+    if (this.rangeDates && this.rangeDates[1]) {
       this.onDateSelect(this.rangeDates[0], this.rangeDates[1]);
       const canvas = <HTMLCanvasElement> document.getElementById('lineChart');
 

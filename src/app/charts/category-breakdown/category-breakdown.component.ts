@@ -22,6 +22,11 @@ export class CategoryBreakdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDetails();
+    this.rangeDates = [new Date(2022, 7, 1), new Date()]
+  }
+
+  ngAfterViewInit(): void {
+    this.onSelect();
   }
 
   getDetails(): void {
@@ -31,7 +36,7 @@ export class CategoryBreakdownComponent implements OnInit {
   }
 
   onSelect(): void {
-    if (this.rangeDates[1] && this.incomeRecords && this.expenseRecords) {
+    if (this.rangeDates && this.rangeDates[1]) {
       this.onDateSelect(this.rangeDates[0], this.rangeDates[1]);
       this.getIncomeData();
       this.getExpenseData();

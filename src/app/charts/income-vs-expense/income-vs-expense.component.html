@@ -1,6 +1,8 @@
-<div class="text-center">
-    <h1 class="my-4">Monthly Income Vs Expenses</h1>
-    <p-button label="show charts" (onClick)="populateChart()"></p-button>
+<div class="">
+    <div class="mb-4 mt-3 col-md-6 offset-md-3 d-flex justify-content-between">
+        <h2>Monthly Income Vs Expenses</h2>
+        <button id="btn" type="button" class="btn btn-primary" (click)="populateChart()">Show Data</button>
+    </div>
     <div class="col-lg-6 offset-lg-3 my-4">
         <canvas id="barChart" height="400">{{barChart}}</canvas>
     </div>

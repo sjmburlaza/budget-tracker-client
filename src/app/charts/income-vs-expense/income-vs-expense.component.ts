@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import * as moment from 'moment';
 import { Record, UserService } from 'src/app/_services/user.service';
@@ -8,7 +8,7 @@ import { Record, UserService } from 'src/app/_services/user.service';
   templateUrl: './income-vs-expense.component.html',
   styleUrls: ['./income-vs-expense.component.css']
 })
-export class IncomeVsExpenseComponent implements OnInit, AfterContentInit {
+export class IncomeVsExpenseComponent implements OnInit, AfterViewInit {
 
   records: Record[] = [];
   incomeRecords: Record[] = [];
@@ -34,15 +34,21 @@ export class IncomeVsExpenseComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    this.getDetails();
   }
 
-  ngAfterContentInit(): void {
+  async ngAfterViewInit(): Promise<void> {
+    await this.getDetails();
+
     // console.log('records',this.records)
-    // this.populateIncomeChart();
+    this.populateChart();
+    const button = document.getElementById("btn");
+    if (button) {
+      console.log("clicked")
+      button.click();
+    }
   }
 
-  getDetails(): void {
+  async getDetails(): Promise<void> {
     this.userService.getDetails().subscribe(data => {
       this.records = data.records;
     });
@@ -100,6 +106,9 @@ export class IncomeVsExpenseComponent implements OnInit, AfterContentInit {
     const monthlyExpenses = this.getMonthlyExpenses();
     const canvas = <HTMLCanvasElement> document.getElementById('barChart');
     if (canvas) {
+      if (this.barChart) {
+        this.barChart.destroy();
+      }
       this.barChart = new Chart(canvas, {
         type: 'bar',
         data: {
@@ -132,6 +141,7 @@ export class IncomeVsExpenseComponent implements OnInit, AfterContentInit {
           maintainAspectRatio: false
         }
       })
+      // this.barChart.update()
     }
   }
 
