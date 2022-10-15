@@ -72,6 +72,10 @@ export class UserService {
     )
   }
 
+  getQuote(): Observable<any> {
+    return this.http.get('https://type.fit/api/quotes');
+  }
+
 
     /**
    * Handle Http operation that failed.

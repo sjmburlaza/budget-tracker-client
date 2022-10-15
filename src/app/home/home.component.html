@@ -1,10 +1,17 @@
 <div class="container text-center mt-sm-5">
-    <h1>Manage your money the fresh way.</h1>
-    <p>Reach your goals with personalized insights, custom budget and spend tracking.</p>
-    <a class="btn btn-outline-primary mx-1" role="button" routerLink="/login">Sign-in</a>
-    <a class="btn btn-primary mx-1" role="button" routerLink="/register">Sign-up</a>
-    <br>
-    <div class="col-lg-4 offset-lg-4 pt-sm-4">
-        <img src="../assets/images/budget-tracker.jpg" alt="" height="300px" width="300px">
+    <div *ngIf="!isLoggedIn">
+        <h1>Manage your money the fresh way.</h1>
+        <p>Reach your goals with personalized insights, custom budget and spend tracking.</p>
+        <a class="btn btn-outline-primary mx-1" role="button" routerLink="/login">Sign-in</a>
+        <a class="btn btn-primary mx-1" role="button" routerLink="/register">Sign-up</a>
+        <br>
+        <div class="col-lg-4 offset-lg-4 pt-sm-4">
+            <img src="../assets/images/budget-tracker.jpg" alt="" height="300px" width="300px">
+        </div>
+    </div>
+    <div *ngIf="isLoggedIn">
+        <div class="col-md-6 offset-md-3 pt-sm-5">
+            <h1> &#8220; {{quoteText}} &#8221;</h1>
+        </div>
     </div>
 </div>

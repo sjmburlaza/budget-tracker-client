@@ -16,10 +16,12 @@ Note: The backend of this projects hasn't been deployed yet because my favorite 
 - Users can add categories under `Income` and `Expense` types
 - Users can edit category names
 - Users can view a table showing their transaction categories
+- Users can search through and filter the Category table
 - Users can add records under corresponding category types and category names
 - Users can edit records
 - Users can delete records
 - Users can view a table showing their detailed records
+- Users can search through and filter the Records table
 - Real-time computation of balance
 - Line Chart showing the daily balance trend
 - Separate Pie Charts for income and expense showing the breakdowns by `Category Name`

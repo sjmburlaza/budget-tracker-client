@@ -4,42 +4,90 @@
         <div class="">
             <form name="form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="form-group my-2">
-                    <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" placeholder="First Name" required #firstName="ngModel">
+                    <input type="text" class="form-control" name="firstName" 
+                        [(ngModel)]="form.firstName" 
+                        placeholder="First Name" 
+                        required 
+                        #firstName="ngModel">
                     <div class="alert-danger" *ngIf="firstName.errors && f.submitted">
-                        <div *ngIf="firstName.errors['required']">First name is required!</div>
+                        <div *ngIf="firstName.errors['required']">
+                            <small class="p-invalid" style="color: red;">
+                                First name is required!
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" placeholder="Last Name" required #lastName="ngModel">
+                    <input type="text" class="form-control" name="lastName" 
+                        [(ngModel)]="form.lastName" 
+                        placeholder="Last Name" 
+                        required 
+                        #lastName="ngModel">
                     <div class="alert-danger" *ngIf="lastName.errors && f.submitted">
-                        <div *ngIf="lastName.errors['required']">Last name is required!</div>
+                        <div *ngIf="lastName.errors['required']">
+                            <small class="p-invalid" style="color: red;">
+                                Last name is required!
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <input type="email" class="form-control" name="email" [(ngModel)]="form.email" placeholder="Email" required #email="ngModel">
+                    <input type="email" class="form-control" name="email" 
+                        [(ngModel)]="form.email" 
+                        placeholder="Email" 
+                        required 
+                        #email="ngModel">
                     <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                        <div *ngIf="email.errors['required']">Email is required!</div>
+                        <div *ngIf="email.errors['required']">
+                            <small class="p-invalid" style="color: red;">
+                                Email is required!
+                            </small>
+                        </div>
                         <div *ngIf="email.errors['email']">
-                            Email must be a valid email address!
+                            <small class="p-invalid" style="color: red;">
+                                Email must be a valid email address!
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+                    <input type="password" class="form-control" name="password" 
+                        placeholder="Password" 
+                        [(ngModel)]="form.password" 
+                        required 
+                        minlength="6" 
+                        #password="ngModel">
                     <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['required']">
+                            <small class="p-invalid" style="color: red;">
+                                Password is required!
+                            </small>
+                        </div>
                         <div *ngIf="password.errors['minlength']">
-                          Password must be at least 6 characters!
+                            <small class="p-invalid" style="color: red;">
+                                Password must be at least 6 characters!
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="form-group my-2">
-                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" [(ngModel)]="form.confirmPassword"  required minlength="6" #confirmPassword="ngModel">
+                    <input type="password" class="form-control" name="confirmPassword" 
+                        placeholder="Confirm Password" 
+                        [(ngModel)]="form.confirmPassword"  
+                        required 
+                        minlength="6" 
+                        #confirmPassword="ngModel">
                     <div class="alert-danger" *ngIf="confirmPassword.errors && f.submitted">
-                        <div *ngIf="confirmPassword.errors['required']">Password is required!</div>
+                        <div *ngIf="confirmPassword.errors['required']">
+                            <small class="p-invalid" style="color: red;">
+                                Password is required!
+                            </small>
+                        </div>
                     </div>
                     <div class="alert-danger"  *ngIf="f.submitted && !passwordMatched">
-                        Password does not match!
+                        <small class="p-invalid" style="color: red;">
+                            Password does not match!
+                        </small>
                     </div>
                 </div>
                 <div class="form-group my-4">
