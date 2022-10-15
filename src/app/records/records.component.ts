@@ -47,12 +47,24 @@ export class RecordsComponent implements OnInit {
   getRecords(): void {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
-      console.log(data.records)
       const records: Record[] = data.records;
       const activeRecords = records.filter(r => r.isDeleted === false);
+      const balance: number[] = [];
       activeRecords.map(a => {
         return a.createdOn = moment(a.createdOn).format('ll')
       });
+      activeRecords.map(a => {
+        if(a.categoryType === 'Income'){
+          balance.push(a.amount)
+        } else if (a.categoryType === 'Expense'){
+          balance.push(-Math.abs(a.amount))
+        }
+
+        return a.balance = balance.reduce((accumulator, currentValue) => {
+          return (accumulator + currentValue)
+        }, 0)
+      })
+
       this.records = activeRecords;
       this.categories = categories;
     })
