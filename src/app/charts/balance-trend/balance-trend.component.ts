@@ -42,12 +42,14 @@ export class BalanceTrendComponent implements OnInit {
     });
   }
 
+  populateChart(): void {
+    this.onSelect();
+  }
+
   onSelect(): void {
-    console.log('yowwww')
     if (this.rangeDates && this.rangeDates[1]) {
       this.onDateSelect(this.rangeDates[0], this.rangeDates[1]);
       const canvas = <HTMLCanvasElement> document.getElementById('lineChart');
-
       if (canvas) {
         if (this.chart) {
           this.chart.destroy();

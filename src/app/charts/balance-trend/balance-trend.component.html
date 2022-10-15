@@ -1,7 +1,9 @@
 <div class="">
-    <div class="mb-4 mt-3 col-md-6 offset-md-3 d-flex justify-content-between">
-        <h2 class="">Balance Trend</h2>
-        <div class="">
+    <div class="row mb-4 mt-3 col-lg-8 offset-lg-2">
+        <div class="col-6">
+            <h2 class="">Balance Trend</h2>
+        </div>
+        <div class="col-4">
             <p-calendar [(ngModel)]="rangeDates" 
                 selectionMode="range" 
                 [readonlyInput]="true" 
@@ -11,8 +13,13 @@
                 (onSelect)="onSelect()">
             </p-calendar>
         </div>
+        <div class="col-2">
+            <button id="btn" type="button" class="btn btn-info" (click)="populateChart()" style="height: 100%;">
+                Show Data
+            </button>
+        </div>
     </div>
-    <div class="col-lg-6 offset-lg-3 my-4 text-center">
+    <div class="col-lg-8 offset-lg-2 my-4 text-center">
         <canvas #myCanvas id="lineChart" height="400">{{chart}}</canvas>
     </div>
 </div>

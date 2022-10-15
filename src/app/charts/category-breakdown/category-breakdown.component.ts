@@ -31,8 +31,18 @@ export class CategoryBreakdownComponent implements OnInit {
 
   getDetails(): void {
     this.userService.getDetails().subscribe(data => {
-      this.records = data.records;
+      const records: Record[] = data.records;
+      const activeRecords = records.filter(r => r.isDeleted === false);
+      this.records = activeRecords;
+      const firstRecordDate = activeRecords[0].createdOn;
+      if (firstRecordDate) {
+        this.rangeDates = [new Date(firstRecordDate), new Date()]
+      }
     });
+  }
+
+  populateChart(): void {
+    this.onSelect();
   }
 
   onSelect(): void {
@@ -43,10 +53,28 @@ export class CategoryBreakdownComponent implements OnInit {
     }
   }
 
+  getNamesAndAmounts(records: Record[]): {name:string, amount: number}[] {
+    const namesAndAmounts: {name:string, amount: number}[] = [];
+    records.forEach(record => {
+      let obj: {name:string, amount: number} = {name:'', amount: 0};
+      if (!namesAndAmounts.find(n => n.name === record.categoryName)) {
+        obj.name = record.categoryName;
+        obj.amount = record.amount;
+        namesAndAmounts.push(obj);
+      } else if (namesAndAmounts.find(n => n.name === record.categoryName)){
+        let objIndex;
+        objIndex = namesAndAmounts.findIndex((obj => obj.name == record.categoryName));
+        namesAndAmounts[objIndex]['amount'] += record.amount;
+      }
+    });
+
+    return namesAndAmounts;
+  }
+
   getIncomeData(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('incomePieChart');
-    const names = this.incomeRecords.map(record => record.categoryName);
-    const amounts = this.incomeRecords.map(record => record.amount);
+    const names: string[] = this.getNamesAndAmounts(this.incomeRecords).map(na => na.name);
+    const amounts: number[] = this.getNamesAndAmounts(this.incomeRecords).map(na => na.amount);
     const bgColors = this.incomeRecords.map(() => `#${this.colorRandomizer()}`);
 
     if (canvas && names && amounts && bgColors) {
@@ -61,12 +89,16 @@ export class CategoryBreakdownComponent implements OnInit {
             data: amounts,
             backgroundColor: bgColors,
             hoverBackgroundColor: bgColors,
-            // radius: '70%'
           }]
         },
         options: {  
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+          }
         }
       })
     }
@@ -74,8 +106,8 @@ export class CategoryBreakdownComponent implements OnInit {
 
   getExpenseData(): void {
     const canvas = <HTMLCanvasElement> document.getElementById('expensePieChart');
-    const names = this.expenseRecords.map(record => record.categoryName);
-    const amounts = this.expenseRecords.map(record => record.amount);
+    const names: string[] = this.getNamesAndAmounts(this.expenseRecords).map(na => na.name);
+    const amounts: number[] = this.getNamesAndAmounts(this.expenseRecords).map(na => na.amount);
     const bgColors = this.expenseRecords.map(() => `#${this.colorRandomizer()}`);
 
     if (canvas && names && amounts && bgColors) {
@@ -95,7 +127,12 @@ export class CategoryBreakdownComponent implements OnInit {
         },
         options: {  
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+          }
         }
       })
     }
