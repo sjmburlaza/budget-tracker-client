@@ -17,7 +17,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" style="height: 100%;"><i class="pi pi-search"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Search...">
+                <input type="text" 
+                    class="form-control" 
+                    placeholder="Search..."
+                    [(ngModel)]="searchText">
             </div>
         </div>
         <div class="col-3">
@@ -29,7 +32,7 @@
         </div>
     </div>
 
-    <p-table #recordTable [value]="records"
+    <p-table #recordTable [value]="records | filter:searchText"
         class="record-table"
         styleClass="p-datatable-sm p-datatable-striped"
         scrollHeight="350px"

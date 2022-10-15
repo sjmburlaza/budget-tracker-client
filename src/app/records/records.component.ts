@@ -34,7 +34,7 @@ export class RecordsComponent implements OnInit {
     description: '',
     amount: 0
   }
-  balanceTextColor: any;
+  searchText: any;
 
   constructor(
     private userService: UserService,

@@ -25,6 +25,7 @@ export class CategoriesComponent implements OnInit {
     name: '',
     type: '',
   }
+  searchText: any;
 
   constructor(
     private userService: UserService,

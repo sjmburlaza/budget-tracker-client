@@ -31,6 +31,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {DropdownModule} from 'primeng/dropdown';
     NgChartsModule,
     ConfirmDialogModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     // authInterceptorProviders
