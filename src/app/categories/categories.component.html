@@ -1,9 +1,24 @@
 <div class="container col-md-10">
-    <h2 class="text-center">Categories</h2>
-    <div class="d-flex flex-row-reverse">
-        <button type="button" class="btn btn-light" (click)="createNew()">Add Category</button>
+    <h2 class="text-center mb-sm-5">Categories</h2>
+    <div class="row">
+        <div class="col-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="height: 100%;"><i class="pi pi-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search...">
+            </div>
+        </div>
+        <div class="col-3">
+        </div>
+        <div class="col-3">
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-outline-success" (click)="createNew()" style="width: 100%;">
+                Add New Category
+            </button>
+        </div>
     </div>
-    <hr>
     <p-table #categoryTable [value]="categories"
         class=""
         styleClass="p-datatable-sm p-datatable-striped" 
@@ -12,8 +27,8 @@
         style="width: 100%;">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 20%;">Type</th>
-                <th style="width: 60%;">Name</th>
+                <th style="width: 40%;">Type</th>
+                <th style="width: 40%;">Name</th>
                 <th class="text-center" style="width: 20%;">Action</th>
             </tr>
         </ng-template>

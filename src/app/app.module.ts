@@ -30,6 +30,7 @@ import { IncomeVsExpenseComponent } from './charts/income-vs-expense/income-vs-e
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {DialogModule} from 'primeng/dialog';
 import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {InputTextModule} from 'primeng/inputtext';
     NgbModule,
     NgChartsModule,
     ConfirmDialogModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule
   ],
   providers: [
     // authInterceptorProviders

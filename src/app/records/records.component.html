@@ -1,10 +1,35 @@
 <div class="container col-md-10" style="background-color: #c7e3f9">
-    <h2 class="text-center">Records</h2>
-    <div class="d-flex flex-row-reverse">
-        <button type="button" class="btn btn-light" (click)="createNew()">Add New Record</button>
+    <h2 class="text-center mb-sm-5">Records</h2>
+    <div class="row">
+        <div class="col-3">
+            <select type="select" name="type" 
+                class="form-control form-select" 
+                [(ngModel)]="selectedCategoryType"
+                #type="ngModel"
+                (ngModelChange)="onCategoryTypeSelect()">
+                <option value="All" selected>All</option>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="height: 100%;"><i class="pi pi-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search...">
+            </div>
+        </div>
+        <div class="col-3">
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-outline-success" (click)="createNew()" style="width: 100%;">
+                Add New Record
+            </button>
+        </div>
     </div>
-    <hr>
-    <p-table [value]="records"
+
+    <p-table #recordTable [value]="records"
         class="record-table"
         styleClass="p-datatable-sm p-datatable-striped"
         scrollHeight="350px"
@@ -27,8 +52,8 @@
                 <td>{{record.categoryType}}</td>
                 <td>{{record.categoryName}}</td>
                 <td>{{record.description}}</td>
-                <td style="text-align: right;">{{record.amount}}</td>
-                <td style="text-align: right;">{{record.balance}}</td>
+                <td style="text-align: right;" [style.color]="record.categoryType === 'Income' ? 'green' : 'red'">{{record.amount}}</td>
+                <td style="text-align: right; ">{{record.balance}}</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-outline-dark border-0" (click)="updateRecord(record)"><i class="bi bi-pencil-square"></i></button>
                     <button type="button" class="btn btn-outline-danger border-0" (click)="deleteRecord(record)"><i class="bi bi-trash"></i></button>

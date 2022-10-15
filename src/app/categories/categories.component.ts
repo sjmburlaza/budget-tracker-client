@@ -39,7 +39,7 @@ export class CategoriesComponent implements OnInit {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
       console.log(categories)
-      this.categories = categories;
+      this.categories = categories.reverse();
     });
   }
 

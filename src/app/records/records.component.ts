@@ -25,20 +25,23 @@ export class RecordsComponent implements OnInit {
   isForUpdate = false;
   categories: Category[] = [];
   categoryNames: any = [];
+  selectedCategoryType: string = 'All';
   records: Record[] = [];
+  recordsCopy: Record[] = [];
   record: Record | RecordNull = {
     categoryName: '',
     categoryType: '',
     description: '',
     amount: 0
   }
+  balanceTextColor: any;
 
   constructor(
     private userService: UserService,
     public dialogService: DialogService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.getRecords();
@@ -49,25 +52,42 @@ export class RecordsComponent implements OnInit {
       const categories: Category[] = data.categories;
       const records: Record[] = data.records;
       const activeRecords = records.filter(r => r.isDeleted === false);
-      const balance: number[] = [];
       activeRecords.map(a => {
         return a.createdOn = moment(a.createdOn).format('ll')
       });
-      activeRecords.map(a => {
-        if(a.categoryType === 'Income'){
-          balance.push(a.amount)
-        } else if (a.categoryType === 'Expense'){
-          balance.push(-Math.abs(a.amount))
-        }
-
-        return a.balance = balance.reduce((accumulator, currentValue) => {
-          return (accumulator + currentValue)
-        }, 0)
-      })
-
+      this.recordsCopy = activeRecords;
       this.records = activeRecords;
+      this.getBalance();
       this.categories = categories;
     })
+  }
+
+  getBalance(): void {
+    const balance: number[] = [];
+    this.records.map(a => {
+      if(a.categoryType === 'Income'){
+        balance.push(a.amount)
+      } else if (a.categoryType === 'Expense'){
+        balance.push(-Math.abs(a.amount))
+      }
+
+      return a.balance = balance.reduce((accumulator, currentValue) => {
+        return (accumulator + currentValue)
+      }, 0)
+    })
+  }
+
+  onCategoryTypeSelect(): void {
+    if (this.selectedCategoryType === 'Income') {
+      this.records = this.recordsCopy.filter(record => record.categoryType === 'Income');
+      this.getBalance();
+    } else if (this.selectedCategoryType === 'Expense') {
+      this.records = this.recordsCopy.filter(record => record.categoryType === 'Expense');
+      this.getBalance();
+    } else {
+      this.records = this.recordsCopy;
+      this.getBalance();
+    }
   }
 
   onCategoryTypeChange(): void {
