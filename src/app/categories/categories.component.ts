@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Category, UserService } from '../_services/user.service';
+import { Record, Category, UserService } from '../_services/user.service';
 
 interface CategoryNull {
   name: null,
@@ -20,6 +20,7 @@ export class CategoriesComponent implements OnInit {
   isSuccessful = false;
   isNew = false;
   isForUpdate = false;
+  records: Record[] = [];
   categories: Category[] = [];
   category: Category | CategoryNull = {
     name: '',
@@ -33,13 +34,14 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getUserDetails();
   }
 
-  getCategories(): void {
+  getUserDetails(): void {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
-      console.log(categories)
+      this.records = data.records;
+      console.log(data.records)
       this.categories = categories.reverse();
     });
   }
@@ -75,14 +77,32 @@ export class CategoriesComponent implements OnInit {
       this.userService.addCategory(this.category as Category).subscribe( data => {
         console.log(data);
         this.isSuccessful = true;
-        this.getCategories();
+        this.getUserDetails();
         this.categoryDialog = false;
       });
     } else if (this.isForUpdate) {
+      const categoryToUpdate: any = this.category;
+      const recordsToUpdate = this.records.filter(rec => rec.categoryId === categoryToUpdate._id);
+      const recs = recordsToUpdate.map(rec => {
+          if (rec.categoryName !== categoryToUpdate.name) {
+            return rec.categoryName = categoryToUpdate.name;
+          }
+          if (rec.categoryType !== categoryToUpdate.type) {
+            return rec.categoryType = categoryToUpdate.type;
+          }
+        })
+        
+      recordsToUpdate.forEach(record => {
+        console.log(recs)
+        this.userService.updateRecord(record as Record).subscribe( data => {
+          this.getUserDetails();
+        });
+      })
+
       this.userService.updateCategory(this.category as Category).subscribe( data => {
         console.log(data);
         this.isSuccessful = true;
-        this.getCategories();
+        this.getUserDetails();
         this.categoryDialog = false;
       });
     }

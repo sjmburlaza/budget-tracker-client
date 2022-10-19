@@ -132,9 +132,9 @@ export class RecordsComponent implements OnInit {
   }
 
   getCategoryId(name: string, type: string): string {
-    const cat = this.categories.find(c => c.name === name && c.type === type)
-    if (cat && cat.id) {
-      return cat.id;
+    const cat: any = this.categories.find(c => c.name === name && c.type === type);
+    if (cat && cat._id) {
+      return cat._id;
     }
     return 'none';
   }

@@ -11,7 +11,8 @@
     </div>
     <div *ngIf="isLoggedIn">
         <div class="col-md-6 offset-md-3 pt-md-5">
-            <h1> &#8220; {{quoteText}} &#8221;</h1>
+            <h1 *ngIf="quoteText"> &#8220; {{quoteText}} &#8221;</h1>
+            <img *ngIf="!quoteText" src="../assets/images/ghost.png" alt="">
         </div>
     </div>
 </div>

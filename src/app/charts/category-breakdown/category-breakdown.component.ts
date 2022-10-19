@@ -21,8 +21,8 @@ export class CategoryBreakdownComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.rangeDates = [new Date(2022, 7, 1), new Date()];
     this.getDetails();
-    this.rangeDates = [new Date(2022, 7, 1), new Date()]
   }
 
   ngAfterViewInit(): void {
@@ -36,7 +36,7 @@ export class CategoryBreakdownComponent implements OnInit {
       this.records = activeRecords;
       const firstRecordDate = activeRecords[0].createdOn;
       if (firstRecordDate) {
-        this.rangeDates = [new Date(firstRecordDate), new Date()]
+        this.rangeDates = [new Date(firstRecordDate), new Date()];
       }
     });
   }
@@ -160,7 +160,7 @@ export class CategoryBreakdownComponent implements OnInit {
   }
 
   colorRandomizer(): string {
-    return Math.floor(Math.random()*16777215).toString(16)
+    return Math.floor(Math.random()*16777215).toString(16);
   }
 
 }

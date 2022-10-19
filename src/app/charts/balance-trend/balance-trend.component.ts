@@ -22,8 +22,8 @@ export class BalanceTrendComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.rangeDates = [new Date(2022, 7, 1), new Date()];
     this.getDetails();
-    this.rangeDates = [new Date(2022, 7, 1), new Date()]
   }
 
   ngAfterViewInit(): void {
@@ -37,7 +37,7 @@ export class BalanceTrendComponent implements OnInit {
       this.records = activeRecords;
       const firstRecordDate = activeRecords[0].createdOn;
       if (firstRecordDate) {
-        this.rangeDates = [new Date(firstRecordDate), new Date()]
+        this.rangeDates = [new Date(firstRecordDate), new Date()];
       }
     });
   }
