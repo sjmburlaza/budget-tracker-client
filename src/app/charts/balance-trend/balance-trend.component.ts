@@ -23,14 +23,14 @@ export class BalanceTrendComponent implements OnInit {
 
   ngOnInit(): void {
     this.rangeDates = [new Date(2022, 7, 1), new Date()];
-    this.getDetails();
+    this.fetchUserDetails();
   }
 
   ngAfterViewInit(): void {
     this.onSelect();
   }
 
-  getDetails(): void {
+  fetchUserDetails(): void {
     this.userService.getDetails().subscribe(data => {
       const records: Record[] = data.records;
       const activeRecords = records.filter(r => r.isDeleted === false);

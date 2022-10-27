@@ -37,7 +37,7 @@ export class IncomeVsExpenseComponent implements OnInit, AfterViewInit {
   }
 
   async ngAfterViewInit(): Promise<void> {
-    await this.getDetails();
+    await this.fetchUserDetails();
 
     // console.log('records',this.records)
     this.populateChart();
@@ -48,7 +48,7 @@ export class IncomeVsExpenseComponent implements OnInit, AfterViewInit {
     }
   }
 
-  async getDetails(): Promise<void> {
+  async fetchUserDetails(): Promise<void> {
     this.userService.getDetails().subscribe(data => {
       this.records = data.records;
     });

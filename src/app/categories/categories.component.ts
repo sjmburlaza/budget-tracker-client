@@ -34,10 +34,10 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUserDetails();
+    this.fetchUserDetails();
   }
 
-  getUserDetails(): void {
+  fetchUserDetails(): void {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
       this.records = data.records;
@@ -77,7 +77,7 @@ export class CategoriesComponent implements OnInit {
       this.userService.addCategory(this.category as Category).subscribe( data => {
         console.log(data);
         this.isSuccessful = true;
-        this.getUserDetails();
+        this.fetchUserDetails();
         this.categoryDialog = false;
       });
     } else if (this.isForUpdate) {
@@ -95,14 +95,14 @@ export class CategoriesComponent implements OnInit {
       recordsToUpdate.forEach(record => {
         console.log(recs)
         this.userService.updateRecord(record as Record).subscribe( data => {
-          this.getUserDetails();
+          this.fetchUserDetails();
         });
       })
 
       this.userService.updateCategory(this.category as Category).subscribe( data => {
         console.log(data);
         this.isSuccessful = true;
-        this.getUserDetails();
+        this.fetchUserDetails();
         this.categoryDialog = false;
       });
     }

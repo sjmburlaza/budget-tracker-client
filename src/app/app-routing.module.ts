@@ -12,27 +12,27 @@ import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'user-profile', component: UserProfileComponent },
-    { path: 'categories', component: CategoriesComponent },
-    { path: 'records', component: RecordsComponent },
-    
-    { 
-      path: 'charts',
-      component: ChartsComponent,
-      children: [
-        {path: 'balance-trend', component: BalanceTrendComponent},
-        {path: 'category-breakdown', component: CategoryBreakdownComponent},
-        {path: 'income-vs-expense', component: IncomeVsExpenseComponent}
-      ]
-    },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
-  ];
+  { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'records', component: RecordsComponent },
   
-  @NgModule({
-    imports: [ RouterModule.forRoot(routes) ],
-    exports: [ RouterModule ]
-  })
-  export class AppRoutingModule {}
+  { 
+    path: 'charts',
+    component: ChartsComponent,
+    children: [
+      {path: 'balance-trend', component: BalanceTrendComponent},
+      {path: 'category-breakdown', component: CategoryBreakdownComponent},
+      {path: 'income-vs-expense', component: IncomeVsExpenseComponent}
+    ]
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
+];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}

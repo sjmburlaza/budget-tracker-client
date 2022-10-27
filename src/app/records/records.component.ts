@@ -44,10 +44,10 @@ export class RecordsComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
-    this.getRecords();
+    this.fetchUserDetails();
   }
 
-  getRecords(): void {
+  fetchUserDetails(): void {
     this.userService.getDetails().subscribe(data => {
       const categories: Category[] = data.categories;
       const records: Record[] = data.records;
@@ -154,13 +154,13 @@ export class RecordsComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.recordDialog = false;
-        this.getRecords();
+        this.fetchUserDetails();
       });
     } else if (this.isForUpdate) {
       this.userService.updateRecord(this.record as Record).subscribe(data => {
         this.isSuccessful = true;
         this.recordDialog = false;
-        this.getRecords();
+        this.fetchUserDetails();
       });
     }
   }
@@ -174,7 +174,7 @@ export class RecordsComponent implements OnInit {
         this.userService.deleteRecord(record as Record).subscribe( data => {
           console.log(data)
           this.isSuccessful = true;
-          this.getRecords();
+          this.fetchUserDetails();
         });
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Record Deleted', life: 3000});
       }

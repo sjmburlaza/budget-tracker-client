@@ -11,8 +11,8 @@
                         #firstName="ngModel">
                     <div class="alert-danger" *ngIf="firstName.errors && f.submitted">
                         <div *ngIf="firstName.errors['required']">
-                            <small class="p-invalid" style="color: red;">
-                                First name is required!
+                            <small class="p-invalid">
+                                *First name is required!
                             </small>
                         </div>
                     </div>
@@ -25,8 +25,8 @@
                         #lastName="ngModel">
                     <div class="alert-danger" *ngIf="lastName.errors && f.submitted">
                         <div *ngIf="lastName.errors['required']">
-                            <small class="p-invalid" style="color: red;">
-                                Last name is required!
+                            <small class="p-invalid">
+                                *Last name is required!
                             </small>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
                         #email="ngModel">
                     <div class="alert-danger" *ngIf="email.errors && f.submitted">
                         <div *ngIf="email.errors['required']">
-                            <small class="p-invalid" style="color: red;">
-                                Email is required!
+                            <small class="p-invalid">
+                                *Email is required!
                             </small>
                         </div>
                         <div *ngIf="email.errors['email']">
-                            <small class="p-invalid" style="color: red;">
-                                Email must be a valid email address!
+                            <small class="p-invalid">
+                                *Email must be a valid email address!
                             </small>
                         </div>
                     </div>
@@ -59,13 +59,13 @@
                         #password="ngModel">
                     <div class="alert-danger" *ngIf="password.errors && f.submitted">
                         <div *ngIf="password.errors['required']">
-                            <small class="p-invalid" style="color: red;">
-                                Password is required!
+                            <small class="p-invalid">
+                                *Password is required!
                             </small>
                         </div>
                         <div *ngIf="password.errors['minlength']">
-                            <small class="p-invalid" style="color: red;">
-                                Password must be at least 6 characters!
+                            <small class="p-invalid">
+                                *Password must be at least 6 characters!
                             </small>
                         </div>
                     </div>
@@ -79,14 +79,14 @@
                         #confirmPassword="ngModel">
                     <div class="alert-danger" *ngIf="confirmPassword.errors && f.submitted">
                         <div *ngIf="confirmPassword.errors['required']">
-                            <small class="p-invalid" style="color: red;">
-                                Password is required!
+                            <small class="p-invalid">
+                                *Password is required!
                             </small>
                         </div>
                     </div>
                     <div class="alert-danger"  *ngIf="f.submitted && !passwordMatched">
-                        <small class="p-invalid" style="color: red;">
-                            Password does not match!
+                        <small class="p-invalid">
+                            *Password does not match!
                         </small>
                     </div>
                 </div>

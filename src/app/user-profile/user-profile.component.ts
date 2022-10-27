@@ -16,10 +16,10 @@ export class UserProfileComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    this.getUserDetails();
+    this.fetchUserDetails();
   }
 
-  getUserDetails(): void {
+  fetchUserDetails(): void {
     this.userService.getDetails().subscribe(data => {
       console.log(data)
       this.userDetails = data;
