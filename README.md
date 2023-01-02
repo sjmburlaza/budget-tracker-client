@@ -2,7 +2,7 @@
 
 ## About the Project
 
-This project is a rewrite of a previous React project that I did for the bootcamp that I attended in 2021.
+This project is a rewrite of the previous React project that I did for the bootcamp that I attended in 2021.
 I liked the overall idea of the project that's why I decided to convert it into Angular and add some functionalities that I wasn't able to do before.
 
 The demo of the project can be found [here](https://budget-tracker-swart.vercel.app/home)
