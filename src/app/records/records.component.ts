@@ -58,6 +58,7 @@ export class RecordsComponent implements OnInit {
       this.recordsCopy = activeRecords;
       this.records = activeRecords;
       this.getBalance();
+      this.records = this.records.reverse();
       this.categories = categories;
     })
   }

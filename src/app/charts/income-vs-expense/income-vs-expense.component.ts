@@ -115,7 +115,7 @@ export class IncomeVsExpenseComponent implements OnInit, AfterViewInit {
           labels: this.months,
           datasets: [
             {
-              label: 'Monthly Income for the year 2022',
+              label: 'Monthly Income for the year 2023',
               backgroundColor: 'rgba(97, 171, 64, 0.2)',
               borderColor: 'rgba(97, 171, 64, 1)',
               borderWidth: 1,
@@ -125,7 +125,7 @@ export class IncomeVsExpenseComponent implements OnInit, AfterViewInit {
               order: 1
             },
             {
-              label: 'Monthly Income for the year 2022',
+              label: 'Monthly Income for the year 2023',
               backgroundColor: 'rgba(255, 99, 132, 0.2)',
               borderColor: 'rgba(255, 99, 132, 1)',
               borderWidth: 1,

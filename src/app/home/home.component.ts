@@ -18,8 +18,13 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    const element = document.body;
+    if (!this.isLoggedIn) {
+      element.style.backgroundColor = '#c7e3f9';
+    }
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
+      element.style.backgroundColor = 'transparent';
     }
     this.getQuote();
   }
