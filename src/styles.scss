@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form-container {
+        background-color: antiquewhite;
+        height: 500px;
+        width: 800px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .side-content {
+            width: 50%;
+        }
+
+        form {
+            width: 50%;
+            height: 100%;
+            background-color: aqua;
+            padding: 0 50px;
+
+            .title {
+                font-size: 36px;
+                margin: 36px 0;
+                text-align: center;
+            }
+
+            .field {
+                margin: 10px 0;
+            }
+
+            .submit-btn {
+                margin-top: 20px;
+
+                button {
+                    padding: 8px;
+                    width: 100%;
+                }
+            }
+
+            .full-name {
+                display: flex;
+
+                .first-name {
+                    margin-right: 10px;
+                }
+            }
+
+            .query {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+        }
+    }
+}
+
+.label {
+    margin-bottom: 0;
+}
+
+input {
+    margin-top: 0;
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid;
+    border-radius: 5px;
+}
