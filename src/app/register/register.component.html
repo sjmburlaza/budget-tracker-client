@@ -1,38 +1,40 @@
-<div class="main">
-    <div class="form-container">
-        <div class="side-content">
-
+<div class="form-main-container">
+    <div class="form-widget">
+        <div class="form-widget__col col-image"></div>
+        <div class="form-widget__col">
+            <header>
+                <p class="title">Create an account.</p>
+            </header>
+            <form>
+                <div class="form-field form-name">
+                    <div class="form-name-first">
+                        <p class="form-field__label">First Name</p>
+                        <input class="form-field__input" type="text">
+                    </div>
+                    <div class="form-name-last">
+                        <p class="form-field__label">Last Name</p>
+                        <input class="form-field__input" type="text">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <p class="form-field__label">Email</p>
+                    <input class="form-field__input" type="text">
+                </div>
+                <div class="form-field">
+                    <p class="form-field__label">Password</p>
+                    <input class="form-field__input" type="text">
+                </div>
+                <div class="form-field">
+                    <p class="form-field__label">Confirm Password</p>
+                    <input class="form-field__input" type="text">
+                </div>
+                <button class="form-submit-btn">Register</button>
+            </form>
+            <footer>
+                <p class="query">Already have an account? 
+                    <a routerLink="/login">Login</a>
+                </p>
+            </footer>
         </div>
-        <form>
-            <div class="title">Create an account.</div>
-            <div class="field full-name">
-                <div class="first-name name">
-                    <p class="label">First name</p>
-                    <input type="text">
-                </div>
-                <div class="last-name name">
-                    <p class="label">Last name</p>
-                    <input type="text">
-                </div>
-            </div>
-            <div class="field">
-                <p class="label">Email</p>
-                <input type="text">
-            </div>
-            <div class="field">
-                <p class="label">Password</p>
-                <input type="text">
-            </div>
-            <div class="field">
-                <p class="label">Confirm password</p>
-                <input type="text">
-            </div>
-            <div class="submit-btn">
-                <button>Register</button>
-            </div>
-            <p class="query">Already have an account? 
-                <a routerLink="/login">Login</a>
-            </p>
-        </form>
     </div>
 </div>

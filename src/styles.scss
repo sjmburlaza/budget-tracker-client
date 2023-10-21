@@ -3,77 +3,86 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.main {
+.form-main-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(212, 212, 201);
+}
 
-    .form-container {
-        background-color: antiquewhite;
-        height: 500px;
-        width: 800px;
+.form-widget {
+    width: 960px;
+    height: 600px;
+    background-color: aquamarine;
+    display: flex;
+
+    &__col {
+        width: 50%;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        // justify-content: center;
         align-items: center;
 
-        .side-content {
-            width: 50%;
+        header {
+            width: 75%;
+
+            .title {
+                margin: 36px 0;
+                font-size: 36px;
+                text-align: center;
+            }
         }
 
         form {
-            width: 50%;
-            height: 100%;
-            background-color: aqua;
-            padding: 0 50px;
-
-            .title {
-                font-size: 36px;
-                margin: 36px 0;
-                text-align: center;
-            }
-
-            .field {
-                margin: 10px 0;
-            }
-
-            .submit-btn {
-                margin-top: 20px;
-
-                button {
-                    padding: 8px;
-                    width: 100%;
-                }
-            }
-
-            .full-name {
-                display: flex;
-
-                .first-name {
-                    margin-right: 10px;
-                }
-            }
-
-            .query {
-                margin-top: 20px;
-                text-align: center;
-            }
-
+            width: 75%;
         }
+    }
+
+    .col-image {
+        background-color: yellow;
     }
 }
 
-.label {
-    margin-bottom: 0;
+.form-field {
+    width: 100%;
+    margin: 0.8rem 0;
+
+    &__label {
+        margin-left: 10px;
+        margin-bottom: 6px;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 8px 14px;
+        border-radius: 14px;
+        border: 1px solid;
+        background-color: transparent;
+    }
 }
 
-input {
-    margin-top: 0;
+.form-name {
+    display: flex;
+    justify-content: space-between;
+
+    &-first {
+        width: 48%;
+    }
+
+    &-last {
+        width: 48%;
+    }
+}
+
+.form-submit-btn {
+    margin: 0.8rem 0;
     width: 100%;
-    padding: 8px;
-    background: transparent;
+    padding: 8px 12px;
+    border-radius: 14px;
     border: 1px solid;
-    border-radius: 5px;
 }
