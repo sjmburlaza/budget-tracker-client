@@ -4,14 +4,18 @@
             <header>
                 <p class="title">Login to your account.</p>
             </header>
-            <form action="">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-field">
                     <p class="form-field__label">Email</p>
-                    <input class="form-field__input" type="text">
+                    <input class="form-field__input"
+                        type="email"
+                        formControlName="email">
                 </div>
                 <div class="form-field">
                     <p class="form-field__label">Password</p>
-                    <input class="form-field__input" type="text">
+                    <input class="form-field__input"
+                        type="password"
+                        formControlName="password">
                 </div>
                 <button class="form-submit-btn">Login</button>
             </form>
