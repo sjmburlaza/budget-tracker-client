@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
+import { CardComponent } from './shared/components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SideBarComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

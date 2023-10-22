@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<div class="main">
+    <div class="main-side-bar" *ngIf="isLoggedIn">
+        <app-side-bar [paths]="paths" [user]="user"></app-side-bar>
+    </div>
+    <div class="main-content" [style.width.vw]="mainContentWidth">
+        <router-outlet></router-outlet>
+    </div>
+</div>

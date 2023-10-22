@@ -1,0 +1,25 @@
+.container {
+    padding: 40px;
+}
+
+.user {
+
+    &__image {
+        height: 100px;
+        filter: grayscale(100%);
+    }
+
+    &__name {
+
+    }
+}
+
+.paths {
+    display: flex;
+    flex-direction: column;
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+    }
+}

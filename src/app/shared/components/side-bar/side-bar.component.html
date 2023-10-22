@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="user">
+        <img src="assets/images/user.png" alt="" class="user__image">
+        <p class="user__name"> {{ user?.firstName }} {{  user?.lastName }} </p>
+    </div>
+    <div class="paths">
+        <div class="paths__top">
+            <a *ngFor="let item of paths"
+                [routerLink]="item.path"
+                [routerLinkActive]="['active']"
+                class="path">
+                <i class="{{ item.icon }} path__icon"></i>
+                <label for="" class="path__label">{{ item.name }}</label>
+            </a>
+        </div>
+        <div class="paths__bottom">
+            <a (click)="signOut()">
+                <i class="bi bi-box-arrow-right path__icon"></i> 
+                <label for="" class="path__label">Sign-out</label>
+            </a>
+        </div>
+    </div>
+</div>
