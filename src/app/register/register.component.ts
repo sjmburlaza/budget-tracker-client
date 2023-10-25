@@ -7,7 +7,7 @@ import { RegisterInfo } from '../shared/models/user.model';
 import { first } from 'rxjs';
 
 @Component({
-  selector: 'app-register',
+  selector: 'bt-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

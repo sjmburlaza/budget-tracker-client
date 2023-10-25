@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LoginInfo } from '../shared/models/user.model';
 
 @Component({
-  selector: 'app-login',
+  selector: 'bt-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

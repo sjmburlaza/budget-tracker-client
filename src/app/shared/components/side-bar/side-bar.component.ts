@@ -5,7 +5,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-side-bar',
+  selector: 'bt-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss']
 })
