@@ -14,6 +14,7 @@ export class LoginComponent {
   form!: FormGroup<any>;
   isLoginSuccessful = false;
   errorMsg = '';
+  submitClicked = false;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +37,8 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    this.submitClicked = true;
+
     if (this.form.invalid) {
       return;
     }
@@ -51,6 +54,8 @@ export class LoginComponent {
         this.isLoginSuccessful = false;
       }
     })
+
+    this.submitClicked = false;
   }
 
   login(loginInfo: LoginInfo): void {

@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup<any>;
   isSignUpSuccessful = false;
   errorMsg = '';
+  submitClicked = false;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +40,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitClicked = true;
+
     if (this.form.invalid) {
       return;
     } else {
@@ -55,6 +58,7 @@ export class RegisterComponent implements OnInit {
           }
         })
     }
+    this.submitClicked = false;
   }
 
   register(registerInfo: RegisterInfo): void {

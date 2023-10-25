@@ -12,3 +12,15 @@ export function confirmPasswordValidator(): ValidatorFn {
         }
     };
 }
+
+export function emailValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (!control.value || emailPattern.test(control.value)) {
+            return null;
+        } else {
+            return { 'invalidEmail': true };
+        }
+    }
+};

@@ -9,13 +9,17 @@
                     <p class="form-field__label">Email</p>
                     <input class="form-field__input"
                         type="email"
-                        formControlName="email">
+                        formControlName="email"
+                        placeholder="youremail@mail.com"
+                        [class.form-field__input--error]="form.get('email')?.hasError('required') && submitClicked">
                 </div>
                 <div class="form-field">
                     <p class="form-field__label">Password</p>
                     <input class="form-field__input"
                         type="password"
-                        formControlName="password">
+                        formControlName="password"
+                        placeholder="**********"
+                        [class.form-field__input--error]="form.get('password')?.hasError('required') && submitClicked">
                 </div>
                 <button class="form-submit-btn">Login</button>
             </form>
