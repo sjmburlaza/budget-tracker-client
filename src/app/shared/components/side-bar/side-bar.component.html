@@ -5,7 +5,7 @@
     </div>
     <div class="paths">
         <div class="paths__top">
-            <a *ngFor="let item of paths"
+            <a *ngFor="let item of topPaths"
                 [routerLink]="item.path"
                 [routerLinkActive]="['active']"
                 class="path">
@@ -14,9 +14,11 @@
             </a>
         </div>
         <div class="paths__bottom">
-            <a (click)="signOut()">
-                <i class="bi bi-box-arrow-right path__icon"></i> 
-                <label for="" class="path__label">Sign-out</label>
+            <a *ngFor="let item of bottomPaths"
+                class="path"
+                (click)="onSignOut()">
+                <i class="{{ item.icon }} path__icon"></i>
+                <label for="" class="path__label">{{ item.name }}</label>
             </a>
         </div>
     </div>

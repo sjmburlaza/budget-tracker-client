@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { confirmPasswordValidator } from '../shared/customValidators';
+import { confirmPasswordValidator, emailValidator } from '../shared/customValidators';
 import { RegisterInfo } from '../shared/models/user.model';
 import { first } from 'rxjs';
 
@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup<any>;
   isSignUpSuccessful = false;
   errorMsg = '';
+  emailExists = false;
   submitClicked = false;
 
   constructor(
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, emailValidator()]],
       password: ['',
         [
           Validators.required,
@@ -53,6 +54,7 @@ export class RegisterComponent implements OnInit {
           if (!res) {
             this.register({ firstName, lastName, email, password });
           } else {
+            this.emailExists = true;
             this.errorMsg = 'Email already exists.';
             this.isSignUpSuccessful = false;
           }

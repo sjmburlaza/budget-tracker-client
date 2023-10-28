@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Path } from '../../models/path.model';
 import { User } from '../../models/user.model';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -11,20 +11,17 @@ import { Router } from '@angular/router';
 })
 export class SideBarComponent {
   @Input() user: User | undefined;
-  @Input() paths: Path[] = [];
+  @Input() topPaths: Path[] = [];
+  @Input() bottomPaths: Partial<Path>[] = [];
+  @Output() signOutEvent = new EventEmitter();
 
-  constructor(
-    private tokenStorage: TokenStorageService,
-    private router: Router,
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
 
   }
 
-  async signOut(): Promise<void> {
-    this.tokenStorage.signOut();
-    await this.router.navigate(['/login']);
-    window.location.reload();
+  onSignOut() {
+    this.signOutEvent.emit();
   }
 }

@@ -12,20 +12,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(212, 212, 201);
 }
 
 .form-widget {
     width: 960px;
-    height: 600px;
-    background-color: aquamarine;
+    height: 540px;
+    background-color: rgb(243, 243, 231);
     display: flex;
 
     &__col {
         width: 50%;
         display: flex;
         flex-direction: column;
-        // justify-content: center;
         align-items: center;
 
         header {
@@ -44,7 +42,7 @@
     }
 
     .col-image {
-        background-color: yellow;
+        background: rgba(147, 246, 235, 0.5);
     }
 }
 
@@ -55,6 +53,13 @@
     &__label {
         margin-left: 10px;
         margin-bottom: 6px;
+        font-size: 0.8rem;
+
+        &--error {
+            color: red;
+            font-size: 0.8rem;
+            float: right;
+        }
     }
 
     &__input {
@@ -88,5 +93,19 @@
     width: 100%;
     padding: 8px 12px;
     border-radius: 14px;
-    border: 1px solid;
+    border: 1px solid rgb(121, 242, 201);
+    background-color: #86fde8;
+    
+}
+
+.form-submit-btn:hover {
+    background-color: aquamarine;
+}
+
+.form-query {
+    font-size: 0.8rem;
+
+    & > a {
+        font-size: 0.8rem;
+    }
 }

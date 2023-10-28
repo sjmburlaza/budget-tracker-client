@@ -3,6 +3,8 @@ import { AuthService } from './services/auth.service';
 import { Path } from './shared/models/path.model';
 import { User } from './shared/models/user.model';
 import { UserService } from './services/user.service';
+import { TokenStorageService } from './services/token-storage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,23 +13,28 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isLoggedIn = this.authService.isLoggedIn();
+  isLoggedIn = false;
   mainContentWidth = 100;
-  paths: Path[] = [];
+  topPaths: Path[] = [];
+  bottomPaths: Partial<Path>[] = [];
   user: User | undefined;
 
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
+    
     if (this.isLoggedIn) {
       this.mainContentWidth = 80;
     }
 
-    this.paths = [
+    this.topPaths = [
       {
         name: 'Dashboard',
         path: 'dashboard',
@@ -53,11 +60,24 @@ export class AppComponent implements OnInit {
         path: 'account',
         icon: 'bi bi-person-circle'
       },
-    ]
+    ];
+
+    this.bottomPaths = [
+      {
+        name: 'Sign-out',
+        icon: 'bi bi-box-arrow-right'
+      }
+    ];
 
     this.userService.getUser();
     this.userService.user$.subscribe(res => {
       this.user = res;
     })
+  }
+
+  async signOut(): Promise<void> {
+    this.tokenStorage.signOut();
+    await this.router.navigate(['/login']);
+    window.location.reload();
   }
 }

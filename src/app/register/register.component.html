@@ -25,12 +25,22 @@
                     </div>
                 </div>
                 <div class="form-field">
-                    <p class="form-field__label">Email</p>
+                    <p class="form-field__label">
+                        Email 
+                        <span *ngIf="emailExists" class="form-field__label--error">
+                            Already exists.
+                        </span>
+                        <span *ngIf="submitClicked && form.get('email')?.hasError('invalidEmail')" class="form-field__label--error">
+                            Invalid email.
+                        </span>
+                    </p>
                     <input class="form-field__input" 
                         type="email"
                         formControlName="email"
                         placeholder="janedoe@maill.com"
-                        [class.form-field__input--error]="form.get('email')?.hasError('required') && submitClicked">
+                        [class.form-field__input--error]="submitClicked 
+                        && form.get('email')?.hasError('required') || emailExists || form.get('email')?.hasError('invalidEmail')"
+                        >
                 </div>
                 <div class="form-field">
                     <p class="form-field__label">Password</p>
@@ -51,7 +61,7 @@
                 <button class="form-submit-btn">Register</button>
             </form>
             <footer>
-                <p class="query">Already have an account? 
+                <p class="form-query">Already have an account? 
                     <a routerLink="/login">Login</a>
                 </p>
             </footer>

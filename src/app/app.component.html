@@ -1,6 +1,10 @@
 <div class="main">
     <div class="main-side-bar" *ngIf="isLoggedIn">
-        <bt-side-bar [paths]="paths" [user]="user"></bt-side-bar>
+        <bt-side-bar [topPaths]="topPaths" 
+            [bottomPaths]="bottomPaths" 
+            [user]="user" 
+            (signOutEvent)="signOut()">
+        </bt-side-bar>
     </div>
     <div class="main-content" [style.width.vw]="mainContentWidth">
         <router-outlet></router-outlet>
