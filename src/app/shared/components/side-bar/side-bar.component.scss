@@ -1,25 +1,57 @@
 .container {
-    padding: 40px;
+    padding: 30px;
 }
 
 .user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
 
     &__image {
         height: 100px;
         filter: grayscale(100%);
+        margin-bottom: 10px;
     }
 
     &__name {
-
+        font-size: 1.2rem;
+        font-weight: bold;
     }
 }
 
 .paths {
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 200px - 30px - 30px);
+    justify-content: space-between;
 
     &__top {
         display: flex;
         flex-direction: column;
     }
+
+    &__bottom {
+        // justify-self: flex-end;
+    }
+
+
+}
+
+.path {
+    margin-bottom: 10px;
+
+    &__icon {
+        margin-right: 8px
+    }
+
+    &__label {
+        font-size: 0.9rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Path } from '../../models/path.model';
 import { User } from '../../models/user.model';
-import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'bt-side-bar',

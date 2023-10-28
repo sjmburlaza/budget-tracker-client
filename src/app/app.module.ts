@@ -11,6 +11,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { CardComponent } from './shared/components/card/card.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ChartsComponent } from './charts/charts.component';
+import { RecordsComponent } from './records/records.component';
+import { BalanceTrendComponent } from './shared/components/balance-trend/balance-trend.component';
+import { CategoryBreakdownComponent } from './shared/components/category-breakdown/category-breakdown.component';
+import { IncomeVsExpenseComponent } from './shared/components/income-vs-expense/income-vs-expense.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { CardComponent } from './shared/components/card/card.component';
     RegisterComponent,
     PageNotFoundComponent,
     SideBarComponent,
-    CardComponent
+    CardComponent,
+    CategoriesComponent,
+    ChartsComponent,
+    RecordsComponent,
+    BalanceTrendComponent,
+    CategoryBreakdownComponent,
+    IncomeVsExpenseComponent
   ],
   imports: [
     BrowserModule,

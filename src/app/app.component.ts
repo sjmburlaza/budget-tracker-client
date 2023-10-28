@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
     this.bottomPaths = [
       {
         name: 'Sign-out',
-        icon: 'bi bi-box-arrow-right'
+        icon: 'bi bi-box-arrow-left'
       }
     ];
 
