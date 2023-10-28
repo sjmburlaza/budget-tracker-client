@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginInfo, RegisterInfo } from '../shared/models/user.model';
 import { environment } from 'src/environments/environment';
-import { KEY } from '../shared/constants/key.const';
+import { KEY } from '../shared/constants/key.enum';
 
 @Injectable({
   providedIn: 'root'

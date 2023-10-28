@@ -1,6 +1,6 @@
 export interface Category {
     _id?: string,
-    defined_id?: number,
+    _pid?: number,
     name: string,
     type: string,
     icon?: string,

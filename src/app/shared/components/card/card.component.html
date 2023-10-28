@@ -1,1 +1,13 @@
-<p>card works!</p>
+<div class="card"
+    [ngClass]="[item?.type === 'income' ? 'card-green' : 'card-red']">
+    <header class="card__header"></header>
+    <div class="card__body">
+        <i [class]="item?.icon"></i>
+        <p> {{ item?.name }} </p>
+    </div>
+    <footer class="card__footer">
+        <button [disabled]="item?.isPredefined">
+            <i class="bi bi-pencil"></i>
+        </button>
+    </footer>
+</div>

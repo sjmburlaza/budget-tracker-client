@@ -17,6 +17,7 @@ import { RecordsComponent } from './records/records.component';
 import { BalanceTrendComponent } from './shared/components/balance-trend/balance-trend.component';
 import { CategoryBreakdownComponent } from './shared/components/category-breakdown/category-breakdown.component';
 import { IncomeVsExpenseComponent } from './shared/components/income-vs-expense/income-vs-expense.component';
+import { ModalFormComponent } from './shared/components/modal-form/modal-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { IncomeVsExpenseComponent } from './shared/components/income-vs-expense/
     RecordsComponent,
     BalanceTrendComponent,
     CategoryBreakdownComponent,
-    IncomeVsExpenseComponent
+    IncomeVsExpenseComponent,
+    ModalFormComponent
   ],
   imports: [
     BrowserModule,

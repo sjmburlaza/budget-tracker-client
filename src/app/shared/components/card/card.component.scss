@@ -1,0 +1,31 @@
+.card {
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    padding: 20px;
+
+    &-green {
+        box-shadow: 0 0 3px green;
+    }
+
+    &-red {
+        box-shadow: 0 0 3px red;
+    }
+
+    &__body {
+
+        & > i {
+            font-size: 50px;
+        }
+    }
+
+    &__footer {
+        margin-top: 10px;
+
+        button {
+            border: none;
+            background: transparent;
+        }
+    }
+}
+

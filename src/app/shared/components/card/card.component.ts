@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'bt-card',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
+  @Input() item: Category | undefined;
 
+  constructor() {}
 }
