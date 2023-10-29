@@ -1,14 +1,14 @@
 <div class="modal">
     <div class="modal-content">
+        <header class="modal-content__header">
+            <p> {{ headerTitle }} </p>
+        </header>
         <ng-container *ngIf="isCategory; else recordTemp">
-            <header>
-                <h4>Add New Category</h4>
-            </header>
-            <form id="categoryForm">
+            <form id="categoryForm" class="modal-content__form">
                 <div class="form-group">
                     <select type="select"
                         name="type"
-                        [(ngModel)]="category.name"
+                        [(ngModel)]="categoryForm.name"
                         #type="ngModel">
                         <option value="" disabled selected>Select type</option>
                         <option value="income">Income</option>
@@ -19,16 +19,54 @@
                     <input type="text"
                         name="name"
                         placeholder="Name"
-                        [(ngModel)]="category.name"
+                        [(ngModel)]="categoryForm.name"
                         #name="ngModel">
                 </div>
             </form>
-            <footer>
-                <button (click)="submitForm()">Submit</button>
-                <button (click)="close()">Cancel</button>
-            </footer>
         </ng-container>
+        <footer class="modal-content__footer">
+            <button (click)="submitForm()">Submit</button>
+            <button (click)="close()">Cancel</button>
+        </footer>
     </div>
 </div>
 
-<ng-template #recordTemp></ng-template>
+<ng-template #recordTemp>
+    <form [formGroup]="recordForm" id="categoryForm" class="modal-content__form">
+        <div class="form-group">
+            <select type="select"
+                formControlName="categoryType"
+                (ngModelChange)="onCategoryTypeChange()">
+                <option value="" disabled selected>Select type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select type="select"
+                formControlName="categoryName">
+                <option value="" disabled selected>Select Name</option>
+                <option *ngFor="let item of selectedCategories"
+                    [value]="item.name">
+                    {{ item.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text"
+                formControlName="description"
+                placeholder="Description">
+        </div>
+        <div class="form-group">
+            <input type="number"
+                formControlName="amount"
+                placeholder="Amount">
+        </div>
+        <div class="form-group">
+            <input type="date"
+                formControlName="transactionDate"
+                min="2023-01-01"
+                [max]="dateNow">
+        </div>
+    </form>
+</ng-template>

@@ -9,8 +9,11 @@
     </div>
     <div class="contents">
         <div class="card-container" *ngFor="let item of categoryList">
-            <bt-card [item]="item"></bt-card>
+            <bt-card [category]="item"></bt-card>
         </div>
     </div>
-    <bt-modal-form *ngIf="openModal" (closeModal)="closeModal()"></bt-modal-form>
+    <bt-modal-form *ngIf="openModal" 
+        [headerTitle]="headerTitle" 
+        (closeModal)="closeModal()">
+    </bt-modal-form>
 </div>

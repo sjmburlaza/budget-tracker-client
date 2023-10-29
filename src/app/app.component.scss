@@ -1,13 +1,15 @@
+@import 'src/styles/variables';
+
+
 .main {
     display: flex;
     
     &-side-bar {
         height: 100vh;
-        width: 20vw;
-        background-color: aqua;
+        width: 300px;
     }
 
     &-content {
-        background-color: rgb(226, 213, 196);
+        background-color: $alabaster;
     }
 }

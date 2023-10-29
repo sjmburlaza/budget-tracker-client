@@ -1,5 +1,8 @@
+@import 'src/styles/variables';
+
 .container {
     padding: 30px;
+    background-color: rgba(211, 232, 250);
 }
 
 .user {
@@ -39,7 +42,8 @@
 }
 
 .path {
-    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
 
     &__icon {
         margin-right: 8px
@@ -47,6 +51,14 @@
 
     &__label {
         font-size: 0.9rem;
+    }
+
+    &.active {
+        background-color: $pastel_blue;
+    }
+
+    &:hover {
+        background-color: $light_blue;
     }
 }
 

@@ -9,6 +9,7 @@ import { CATEGORY_EXPENSES, CATEGORY_INCOME } from '../shared/constants/categori
 export class CategoriesComponent implements OnInit {
   categoryList: any = [];
   openModal = false;
+  headerTitle = '';
 
   constructor() {}
 
@@ -18,6 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   addNewCategory(): void {
     this.openModal = true;
+    this.headerTitle = 'Add New Category';
   }
 
   closeModal(): void {
