@@ -1,0 +1,20 @@
+.header {
+    height: 80px;
+    display: flex;
+    padding-left: 40px;
+    align-items: center;
+
+    &__button {
+        height: 30px;
+        padding: 0 10px;
+    }
+
+    &__search {
+        margin-left: 10px;
+
+        input {
+            height: 30px;
+            padding: 0 10px;
+        }
+    }
+}
