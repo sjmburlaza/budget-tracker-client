@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { CategoriesComponent } from './categories/categories.component';
@@ -34,12 +34,13 @@ import { ModalFormComponent } from './shared/components/modal-form/modal-form.co
     BalanceTrendComponent,
     CategoryBreakdownComponent,
     IncomeVsExpenseComponent,
-    ModalFormComponent
+    ModalFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
   ],
   providers: [],

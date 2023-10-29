@@ -1,7 +1,9 @@
 <div class="container">
     <div class="header">
-        <button class="header__button">Add New Category</button>
-        <div class="header__search-input">
+        <button class="header__button" (click)="addNewCategory()">
+            Add New Category
+        </button>
+        <div class="header__search">
             <input type="text" placeholder="Search...">
         </div>
     </div>
@@ -10,4 +12,5 @@
             <bt-card [item]="item"></bt-card>
         </div>
     </div>
+    <bt-modal-form *ngIf="openModal" (closeModal)="closeModal()"></bt-modal-form>
 </div>

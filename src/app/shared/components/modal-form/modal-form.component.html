@@ -1,1 +1,34 @@
-<p>modal-form works!</p>
+<div class="modal">
+    <div class="modal-content">
+        <ng-container *ngIf="isCategory; else recordTemp">
+            <header>
+                <h4>Add New Category</h4>
+            </header>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <select type="select"
+                        name="type"
+                        [(ngModel)]="category.name"
+                        #type="ngModel">
+                        <option value="" disabled selected>Select type</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                        name="name"
+                        placeholder="Name"
+                        [(ngModel)]="category.name"
+                        #name="ngModel">
+                </div>
+            </form>
+            <footer>
+                <button (click)="submitForm()">Submit</button>
+                <button (click)="close()">Cancel</button>
+            </footer>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #recordTemp></ng-template>
