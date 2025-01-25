@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "budget-tracker-client:build:production"
+              "buildTarget": "budget-tracker-client:build:production"
             },
             "development": {
-              "browserTarget": "budget-tracker-client:build:development"
+              "buildTarget": "budget-tracker-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "budget-tracker-client:build"
+            "buildTarget": "budget-tracker-client:build"
           }
         },
         "test": {
