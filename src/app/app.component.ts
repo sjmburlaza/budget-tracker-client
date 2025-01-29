@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { Path } from './shared/models/path.model';
 import { User } from './shared/models/user.model';
-import { UserService } from './services/user.service';
-import { TokenStorageService } from './services/token-storage.service';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthState } from './state/reducers/auth.reducer';
+import { selectToken, selectUser } from './state/selectors/auth.selectors';
+import { logout } from './state/actions/login.actions';
+import { Store } from '@ngrx/store';
+import { BOTTOM_PATHS, TOP_PATHS } from './shared/constants/menu.const';
 
 
 @Component({
@@ -13,71 +15,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isLoggedIn = false;
-  mainContentWidth = 100;
+  mainContentWidth = 80;
   topPaths: Path[] = [];
   bottomPaths: Partial<Path>[] = [];
-  user: User | undefined;
 
 
-  constructor(
-    private authService: AuthService,
-    private userService: UserService,
-    private tokenStorage: TokenStorageService,
-    private router: Router,
-  ) {}
+  user$: Observable<User | null>;
+  token$: Observable<string | null>;
 
-  ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    
-    if (this.isLoggedIn) {
-      this.mainContentWidth = 80;
-    }
-
-    this.topPaths = [
-      {
-        name: 'Dashboard',
-        path: 'dashboard',
-        icon: 'bi bi-clipboard2-pulse-fill'
-      },
-      {
-        name: 'Transaction Records',
-        path: 'records',
-        icon: 'bi bi-card-list'
-      },
-      {
-        name: 'Charts',
-        path: 'charts',
-        icon: 'bi bi-pie-chart-fill'
-      },
-      {
-        name: 'Categories',
-        path: 'categories',
-        icon: 'bi bi-tag-fill'
-      },
-      {
-        name: 'Account',
-        path: 'account',
-        icon: 'bi bi-person-circle'
-      },
-    ];
-
-    this.bottomPaths = [
-      {
-        name: 'Sign-out',
-        icon: 'bi bi-box-arrow-left'
-      }
-    ];
-
-    this.userService.getUser();
-    this.userService.user$.subscribe(res => {
-      this.user = res;
-    })
+  constructor(private store: Store<AuthState>) {
+    this.user$ = this.store.select(selectUser);
+    this.token$ = this.store.select(selectToken);
   }
 
-  async signOut(): Promise<void> {
-    this.tokenStorage.signOut();
-    await this.router.navigate(['/login']);
-    window.location.reload();
+  ngOnInit(): void {
+    this.topPaths = TOP_PATHS;
+    this.bottomPaths = BOTTOM_PATHS;
+  }
+
+  onLogout() {
+    this.store.dispatch(logout());
   }
 }

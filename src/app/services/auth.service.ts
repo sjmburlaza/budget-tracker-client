@@ -20,8 +20,8 @@ export class AuthService {
     return this.http.post(environment.AUTH_API + 'register', registerInfo, this.httpOptions);
   }
 
-  login(loginInfo: LoginInfo): Observable<any> {
-    return this.http.post(environment.AUTH_API + 'login', loginInfo, this.httpOptions);
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(environment.AUTH_API + 'login', {email, password}, this.httpOptions);
   }
 
   emailExists(email: string): Observable<any> {
