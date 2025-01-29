@@ -18,6 +18,10 @@ import { BalanceTrendComponent } from './shared/components/balance-trend/balance
 import { CategoryBreakdownComponent } from './shared/components/category-breakdown/category-breakdown.component';
 import { IncomeVsExpenseComponent } from './shared/components/income-vs-expense/income-vs-expense.component';
 import { ModalFormComponent } from './shared/components/modal-form/modal-form.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './state/effects/auth.effects';
+import { authReducer } from './state/reducers/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import { ModalFormComponent } from './shared/components/modal-form/modal-form.co
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot({ auth: authReducer }),
+    EffectsModule.forRoot([AuthEffects]),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

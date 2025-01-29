@@ -1,9 +1,9 @@
 <div class="main">
-    <div class="main-side-bar" *ngIf="isLoggedIn">
+    <div *ngIf="user$ | async as user" class="main-side-bar">
         <bt-side-bar [topPaths]="topPaths" 
             [bottomPaths]="bottomPaths" 
             [user]="user" 
-            (signOutEvent)="signOut()">
+            (signOutEvent)="onLogout()">
         </bt-side-bar>
     </div>
     <div class="main-content" [style.width.vw]="mainContentWidth">

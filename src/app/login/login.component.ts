@@ -4,6 +4,9 @@ import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
 import { LoginInfo } from '../shared/models/user.model';
+import { Store } from '@ngrx/store';
+import { login } from '../state/actions/login.actions';
+import { AuthState } from '../state/reducers/auth.reducer';
 
 @Component({
   selector: 'bt-login',
@@ -21,6 +24,7 @@ export class LoginComponent {
     private tokenStorage: TokenStorageService,
     private router: Router,
     private fb: FormBuilder,
+    private store: Store<AuthState>,
   ) {}
 
   ngOnInit(): void {
@@ -36,44 +40,52 @@ export class LoginComponent {
     });
   }
 
-  onSubmit(): void {
-    this.submitClicked = true;
+  // onSubmit(): void {
+  //   this.submitClicked = true;
 
-    if (this.form.invalid) {
-      return;
-    }
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
     
+  //   const { email, password } = this.form.value;
+
+  //   this.authService.emailExists(email).subscribe(res => {
+  //     if (res) {
+  //       this.isLoginSuccessful = true;
+  //       this.login({ email, password });
+  //     } else {
+  //       this.errorMsg = 'Email does not exist.';
+  //       this.isLoginSuccessful = false;
+  //     }
+  //   })
+
+  //   this.submitClicked = false;
+  // }
+
+  onSubmit() {
     const { email, password } = this.form.value;
 
-    this.authService.emailExists(email).subscribe(res => {
-      if (res) {
-        this.isLoginSuccessful = true;
-        this.login({ email, password });
-      } else {
-        this.errorMsg = 'Email does not exist.';
-        this.isLoginSuccessful = false;
-      }
-    })
-
-    this.submitClicked = false;
+    this.store.dispatch(login({ email: email, password: password }));
+    this.router.navigate(['/dashboard']);
   }
 
-  login(loginInfo: LoginInfo): void {
-    if (!loginInfo) {
-      return;
-    }
+  // login(loginInfo: LoginInfo): void {
+  //   if (!loginInfo) {
+  //     return;
+  //   }
 
-    this.authService.login(loginInfo).subscribe( async response => {
-      if (!response.error) {
-        this.tokenStorage.saveToken(response.accessToken);
-        this.tokenStorage.saveUser(response);
-        await this.router.navigate(['/dashboard']);
-        window.location.reload();
-      } else {
-        this.isLoginSuccessful = false;
-        this.errorMsg = response.error === 'incorrect-password' ? 'Incorrect password!' : response.error;
-      }
-    });
-  }
+  //   this.authService.login(loginInfo).subscribe( async response => {
+  //     console.log('response', response)
+  //     if (!response.error) {
+  //       this.tokenStorage.saveToken(response.accessToken);
+  //       this.tokenStorage.saveUser(response);
+  //       await this.router.navigate(['/dashboard']);
+  //       // window.location.reload();
+  //     } else {
+  //       this.isLoginSuccessful = false;
+  //       this.errorMsg = response.error === 'incorrect-password' ? 'Incorrect password!' : response.error;
+  //     }
+  //   });
+  // }
 
 }
